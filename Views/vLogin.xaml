@@ -8,11 +8,11 @@
         Padding="20">
         <Entry x:Name="txtnombre" Placeholder="Nombre de usuario"/>
         <Entry x:Name="txtcontrasena" Placeholder="Contrasena" IsPassword="True"/>
-        <Button Text="Iniciar Sesion" Clicked="Button_Clicked" BackgroundColor="#26a69a"
+        <Button Text="Iniciar Sesion" x:Name="btnIngresar" Clicked="btnIngresar_Clicked" BackgroundColor="#26a69a"
                  TextColor="White"
                  CornerRadius="10"
                  FontAttributes="Bold"/>
-        <Button Text="Registrarse" Clicked="Button_Registrar_Clicked" BackgroundColor="#26a69a"
+        <Button Text="Registrarse" x:Name="btnRegistar" Clicked="btnRegistar_Clicked" BackgroundColor="#26a69a"
                  TextColor="White"
                  CornerRadius="10"
                  FontAttributes="Bold"/>
