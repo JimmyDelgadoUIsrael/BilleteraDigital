@@ -17,5 +17,6 @@ namespace BilleteraDigital.Modelo
         public string nombreusuario { get; set; } = string.Empty;
         public string contrasena { get; set; } = string.Empty;
         public string rol { get; set; } = string.Empty;
+        public bool estado { get; set; } = true;
     }
 }
