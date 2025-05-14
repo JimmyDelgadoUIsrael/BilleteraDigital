@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BilleteraDigital.Views.AboutPage"
+             Title="Acerca de">
+
+    <ScrollView>
+        <VerticalStackLayout 
+            Padding="30"
+            Spacing="20"
+            VerticalOptions="Center">
+
+            <!-- Nombre de la aplicación -->
+            <Label Text="Billetera Digital"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#333"/>
+
+            <!-- Logo -->
+            <Image Source="logo.png"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   HorizontalOptions="Center" />
+
+            <!-- Información del desarrollador -->
+            <Label Text="Desarrollado por:"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#555"
+                   HorizontalOptions="Center"/>
+
+            <Label Text="Jimmy Delgado"
+                   FontSize="16"
+                   TextColor="#555"
+                   HorizontalOptions="Center"/>
+            <Label Text="Byron Gullasamin"
+                    FontSize="16"
+                    TextColor="#555"
+                    HorizontalOptions="Center"/>
+            <Label Text="Jonnathan Chicaiza "
+                    FontSize="16"
+                    TextColor="#555"
+                    HorizontalOptions="Center"/>
+            <Label Text="Jonathan Gualpa"
+                    FontSize="16"
+                    TextColor="#555"
+                    HorizontalOptions="Center"/>
+
+            <!-- Información adicional opcional -->
+            <Label Text="Versión 1.0.0"
+                   FontSize="14"
+                   TextColor="#777"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <Label Text="Aplicación diseñada para ayudarte a gestionar tus finanzas personales de forma simple, segura y eficiente."
+                   FontSize="14"
+                   TextColor="#777"
+                   HorizontalTextAlignment="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
