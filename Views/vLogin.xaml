@@ -1,20 +1,77 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BilleteraDigital.Views.vLogin"
-             Title="vLogin">
-    <VerticalStackLayout 
-        Spacing="30"
-        Padding="20">
-        <Entry x:Name="txtnombre" Placeholder="Nombre de usuario"/>
-        <Entry x:Name="txtcontrasena" Placeholder="Contrasena" IsPassword="True"/>
-        <Button Text="Iniciar Sesion" x:Name="btnIngresar" Clicked="btnIngresar_Clicked" BackgroundColor="#26a69a"
-                 TextColor="White"
-                 CornerRadius="10"
-                 FontAttributes="Bold"/>
-        <Button Text="Registrarse" x:Name="btnRegistar" Clicked="btnRegistar_Clicked" BackgroundColor="#26a69a"
-                 TextColor="White"
-                 CornerRadius="10"
-                 FontAttributes="Bold"/>
-    </VerticalStackLayout>
+             Title="Iniciar Sesión">
+
+    <!-- Recursos: Estilos reutilizables -->
+    <ContentPage.Resources>
+        <Style x:Key="BotonPrincipal" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#26a69a" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HeightRequest" Value="45" />
+        </Style>
+
+        <Style x:Key="CajaTexto" TargetType="Entry">
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
+        <Style x:Key="TituloPrincipal" TargetType="Label">
+            <Setter Property="FontSize" Value="28" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#333" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30"
+            VerticalOptions="Center">
+
+            <!-- Título -->
+            <Label Text="Billetera Digital"
+                   Style="{StaticResource TituloPrincipal}" />
+
+            <!-- Logo -->
+            <Image Source="logo.png"
+                   HeightRequest="120"
+                   WidthRequest="120"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+            <!-- Campos de entrada -->
+            <Entry x:Name="txtnombre"
+                   Placeholder="Nombre de usuario"
+                   Style="{StaticResource CajaTexto}" />
+
+            <Entry x:Name="txtcontrasena"
+                   Placeholder="Contraseña"
+                   IsPassword="True"
+                   Style="{StaticResource CajaTexto}" />
+
+            <!-- Botón Iniciar Sesión -->
+            <Button Text="Iniciar Sesión"
+                    x:Name="btnIngresar"
+                    Style="{StaticResource BotonPrincipal}"
+                    Clicked="btnIngresar_Clicked" />
+
+            <!-- Botón Registrarse -->
+            <Button Text="Registrarse"
+                    x:Name="btnRegistar"
+                    Style="{StaticResource BotonPrincipal}"
+                    Clicked="btnRegistar_Clicked" />
+
+            <Button Text="About"
+                    x:Name="btnAbout"
+                    Clicked="btnAbout_Clicked"
+                    BackgroundColor="Gray"/>
+            
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
