@@ -3,10 +3,88 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BilleteraDigital.Views.vInicio"
              Title="vInicio">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+
+        <Grid >
+            <AbsoluteLayout BackgroundColor="#087A4B" Opacity=".6">
+            <Image Source="login.png"
+               Aspect="AspectFill"
+               Opacity="0.50"
+               IsEnabled="False"
+               
+               />
+            </AbsoluteLayout>
+
+            <VerticalStackLayout Padding="20" Spacing="25">
+
+                <Label Text="Bienvenido"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+
+                <Label x:Name="lblBienvenida"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="White"/>
+
+
+                <!-- Tarjeta 1 -->
+                <Frame CornerRadius="20" HasShadow="True" BackgroundColor="#EDEBF6" Padding="15">
+                    <Grid ColumnDefinitions="Auto, *" VerticalOptions="Center">
+                        <Image Source="ingresos.png"
+                           HeightRequest="60"
+                           WidthRequest="60" />
+                        <Button Grid.Column="1"
+                            Text="Registrar Ingreso"
+                            FontAttributes="Bold"
+                            BackgroundColor="Transparent"
+                            TextColor="#087A4B"
+                            HorizontalOptions="Start"/>
+                    </Grid>
+                </Frame>
+
+                <!-- Tarjeta 2 -->
+                <Frame CornerRadius="20" HasShadow="True" BackgroundColor="#EDEBF6" Padding="15">
+                    <Grid ColumnDefinitions="Auto, *" VerticalOptions="Center">
+                        <Image Source="gastos.png"
+                           HeightRequest="60"
+                           WidthRequest="60" />
+                        <Button Grid.Column="1"
+                            Text="Registrar Gasto"
+                            FontAttributes="Bold"
+                            BackgroundColor="Transparent"
+                            TextColor="#087A4B"
+                            HorizontalOptions="Start"
+                            />
+                    </Grid>
+                </Frame>
+
+                <!-- Tarjeta 3 -->
+                <Frame CornerRadius="20" HasShadow="True" BackgroundColor="#EDEBF6" Padding="15">
+                    <Grid ColumnDefinitions="Auto, *" VerticalOptions="Center">
+                        <Image Source="reportes.png"
+                           HeightRequest="60"
+                           WidthRequest="60" />
+                        <Button Grid.Column="1"
+                            Text="Ver Reportes"
+                            FontAttributes="Bold"
+                            BackgroundColor="Transparent"
+                            TextColor="#087A4B"
+                            HorizontalOptions="Start"
+                            />
+                    </Grid>
+                </Frame>
+
+                <Button Text="Cerrar Sesión"
+                TextColor="White"
+                BackgroundColor="#D9534F"
+                CornerRadius="20"
+                FontAttributes="Bold"
+                HeightRequest="50"
+                Clicked="OnCerrarSesionClicked"/>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </ContentPage>

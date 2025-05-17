@@ -58,9 +58,10 @@
                             </Image.Source>
                         </Image>
 
-                    <Entry Grid.Column="1"
+                    <Entry x:Name="txtCorreo" Grid.Column="1"
                                Placeholder="EMAIL"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center"
+/>
                 </Grid>
     <!--contaseña-->
                 <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
@@ -86,7 +87,8 @@
                             Color="#087a4b"/>
                         </Image.Source>
                     </Image>
-                           <Entry Grid.Column="1"
+                    
+                           <Entry  x:Name="txtPassword" Grid.Column="1"
                            Placeholder="PASSWORD"
                            IsPassword="True"                      
                            VerticalOptions="Center"/>
@@ -97,7 +99,8 @@
                     BackgroundColor="#087a4b"
                     HeightRequest="60"
                     Text="Ingreso"
-                    TextColor="White"/>
+                    TextColor="White"
+                    Clicked="btnIngresar_Clicked"/>
 
                 <Label Margin="0,20,0,-10"
                        HorizontalOptions="Center"
@@ -110,7 +113,15 @@
                     BackgroundColor="#FBF6FD"
                     HeightRequest="60"
                     Text="Crear una cuenta"
-                    TextColor="#087a4b"/>
+                    TextColor="#087a4b"
+                    Clicked="OnCrearCuentaClicked"/>
+
+                <Button Text="Ingresar con Huella"
+                     Clicked="OnHuellaClicked"
+                      BackgroundColor="#087A4B"
+                      TextColor="White"
+                        Margin="0,20,0,0"/>
+
 
             </VerticalStackLayout>
         </Grid>
