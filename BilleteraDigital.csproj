@@ -67,6 +67,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\FormularioRegistro.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\vAbout.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

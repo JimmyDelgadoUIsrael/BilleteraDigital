@@ -17,9 +17,10 @@ namespace BilleteraDigital
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("FontAwesomeSolid.otf", "AwesomeSolid");
                 });
+            builder.Services.AddSingleton<Utilitario.DatabaseService>();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
