@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BilleteraDigital.Views.FormularioRegistro"
+             Title="FormularioRegistro">
+    <StackLayout Padding="20" Spacing="10">
+        <Picker x:Name="TipoPicker" Title="Tipo">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Ingreso</x:String>
+                    <x:String>Gasto</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Entry x:Name="DescripcionEntry" Placeholder="Descripción" />
+        <Entry x:Name="MontoEntry" Placeholder="Monto" Keyboard="Numeric" />
+
+        <Button x:Name="btnGuardar" Text="Guardar" Clicked="btnGuardar_Clicked"/>
+        <Button x:Name="btnCancelar" Text="Cancelar" Clicked="btnCancelar_Clicked"/>
+    </StackLayout>
+</ContentPage>

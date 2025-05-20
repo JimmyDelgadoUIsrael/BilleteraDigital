@@ -1,4 +1,3 @@
-
 namespace BilleteraDigital.Views;
 
 public partial class vAbout : ContentPage
@@ -7,6 +6,5 @@ public partial class vAbout : ContentPage
     {
         InitializeComponent();
     }
-
 
 }
