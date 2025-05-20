@@ -16,4 +16,10 @@ public partial class vLogin : ContentPage
     {
 
     }
+
+    private void btnAbout_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new Views.vAbout());
+
+    }
 }
