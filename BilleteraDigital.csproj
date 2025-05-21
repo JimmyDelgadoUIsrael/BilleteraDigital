@@ -1,12 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">
-			net9.0-maccatalyst;net9.0-android;net9.0-windows10.0.19041.0
-		</TargetFrameworks>
-		<TargetFrameworks Condition="!$([MSBuild]::IsOSPlatform('windows'))">
-			net9.0-maccatalyst;net9.0-android
-		</TargetFrameworks>
+		<TargetFrameworks>net9.0-android;net9.0-maccatalyst;net9.0-windows10.0.19041.0</TargetFrameworks>
+
 
 		<OutputType>Exe</OutputType>
 		<RootNamespace>BilleteraDigital</RootNamespace>
@@ -27,8 +23,7 @@
 
 		<!-- Para evitar conflicto al publicar en Microsoft Store -->
 		<WindowsPackageType>None</WindowsPackageType>
-		<TargetFrameworks>
-			net9.0-maccatalyst;net9.0-android35.0</TargetFrameworks>
+		
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
