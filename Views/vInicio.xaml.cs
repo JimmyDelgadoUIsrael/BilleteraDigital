@@ -26,4 +26,29 @@ public partial class vInicio : ContentPage
         var formulario = new FormularioRegistro(_db);
         await Navigation.PushModalAsync(new FormularioRegistro(_db));
     }
+
+    private async void btnEditar_Clicked(object sender, EventArgs e)
+    {
+        var transaccion = (sender as Button)?.CommandParameter as Modelo.Transaccion;
+        if (transaccion != null)
+        {
+            var formulario = new FormularioRegistro(_db, transaccion); // Sobrecarga con edición
+            await Navigation.PushModalAsync(formulario);
+        }
+
+    }
+
+    private async void btnEliminar_Clicked(object sender, EventArgs e)
+    {
+        var transaccion = (sender as Button)?.CommandParameter as Modelo.Transaccion;
+        if (transaccion != null)
+        {
+            var confirm = await DisplayAlert("Confirmar", "¿Eliminar esta transacción?", "Sí", "No");
+            if (confirm)
+            {
+                await _db.EliminarTransaccionAsync(transaccion);
+                await CargarTransaccionesAsync();
+            }
+        }
+    }
 }

@@ -18,6 +18,8 @@ namespace BilleteraDigital
                     fonts.AddFont("FontAwesomeSolid.otf", "AwesomeSolid");
                 });
             builder.Services.AddSingleton<Utilitario.DatabaseService>();
+            builder.Services.AddTransient<Views.FormularioRegistro>();
+            builder.Services.AddTransient<Views.vInicio>();
 
 #if DEBUG
             builder.Logging.AddDebug();
