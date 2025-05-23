@@ -38,11 +38,17 @@ public partial class vInicio : ContentPage
 
         decimal totalIngreso = lista.Where(t => t.tipo == "Ingreso").Sum(t => t.monto);
         decimal totalGasto = lista.Where(t => t.tipo == "Gasto").Sum(t => t.monto);
+        decimal total = totalIngreso - totalGasto;
 
         lblTotalIngresos.Text = $"Total Ingresos: {totalIngreso:C}";
         lblTotalGastos.Text = $"Total Gastos: {totalGasto:C}";
-    }
+        lblTotal.Text = $"Total: {total:C}";
 
+        if (total <= 0)
+        {
+           DisplayAlert(Title, "No tienes dinero disponible", "Aceptar");
+        }
+    }
     private async void btnNuevo_Clicked(object sender, EventArgs e)
     {
         var formulario = new FormularioRegistro(_db);
@@ -72,5 +78,10 @@ public partial class vInicio : ContentPage
                 await CargarTransaccionesAsync();
             }
         }
+    }
+
+    private void btnNoticia_Clicked(object sender, EventArgs e)
+    {
+
     }
 }

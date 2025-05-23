@@ -5,6 +5,8 @@
              Title="vInicio">
     <ScrollView>
         <StackLayout Padding="20" Spacing="15">
+            <Button x:Name="btnNoticia"
+                    Clicked="btnNoticia_Clicked"/>
             <Border Stroke="#CCCCCC"
                 StrokeThickness="1"
                 BackgroundColor="White"
@@ -38,6 +40,10 @@
                            Text="💸 Gastos: $0.00"
                            FontAttributes="Bold"
                            TextColor="#D32F2F" />
+                        <Label x:Name="lblTotal"
+                               Text=" Total: $0.00"
+                               FontAttributes="Bold"
+                               TextColor="Black"/>
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
             </Border>
