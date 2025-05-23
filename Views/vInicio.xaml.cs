@@ -20,6 +20,12 @@ public partial class vInicio : ContentPage
     {
         var lista = await _db.ObtenerTransaccionesAsync();
         TransaccionesView.ItemsSource = lista;
+
+        decimal totalIngreso = lista.Where(t => t.tipo == "Ingreso").Sum(t => t.monto);
+        decimal totalGasto = lista.Where(t => t.tipo == "Gasto").Sum(t => t.monto);
+
+        lblTotalIngresos.Text = $"Total Ingresos: {totalIngreso:C}";
+        lblTotalGastos.Text = $"Total Gastos: {totalGasto:C}";
     }
     private async void btnNuevo_Clicked(object sender, EventArgs e)
     {

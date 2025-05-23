@@ -8,7 +8,14 @@
         <VerticalStackLayout Padding="20" Spacing="15">
 
             <Label Text="Tipo de Transacción" FontAttributes="Bold" FontSize="16"/>
-            <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="5">
+
+            <Border BackgroundColor="White"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="5">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.15" Offset="5,5" Radius="8"/>
+                </Border.Shadow>
                 <Picker x:Name="TipoPicker">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -17,17 +24,31 @@
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>
-            </Frame>
+            </Border>
 
             <Label Text="Descripción" FontAttributes="Bold" FontSize="16"/>
-            <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="5">
+
+            <Border BackgroundColor="White"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="5">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.15" Offset="5,5" Radius="8"/>
+                </Border.Shadow>
                 <Entry x:Name="DescripcionEntry" Placeholder="Ej. Sueldo, comida..." />
-            </Frame>
+            </Border>
 
             <Label Text="Monto" FontAttributes="Bold" FontSize="16"/>
-            <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="5">
+
+            <Border BackgroundColor="White"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="5">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.15" Offset="5,5" Radius="8"/>
+                </Border.Shadow>
                 <Entry x:Name="MontoEntry" Placeholder="$0.00" Keyboard="Numeric" />
-            </Frame>
+            </Border>
 
             <Button Text="💾 Guardar"
                     BackgroundColor="#4CAF50"
