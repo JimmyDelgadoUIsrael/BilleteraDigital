@@ -38,7 +38,7 @@ public partial class vInicio : ContentPage
         var transaccion = (sender as Button)?.CommandParameter as Modelo.Transaccion;
         if (transaccion != null)
         {
-            var formulario = new FormularioRegistro(_db, transaccion); // Sobrecarga con edición
+            var formulario = new FormularioRegistro(_db, transaccion); // Sobrecarga con edici�n
             await Navigation.PushModalAsync(formulario);
         }
 
@@ -49,7 +49,7 @@ public partial class vInicio : ContentPage
         var transaccion = (sender as Button)?.CommandParameter as Modelo.Transaccion;
         if (transaccion != null)
         {
-            var confirm = await DisplayAlert("Confirmar", "¿Eliminar esta transacción?", "Sí", "No");
+            var confirm = await DisplayAlert("Confirmar", "�Eliminar esta transacci�n?", "S�", "No");
             if (confirm)
             {
                 await _db.EliminarTransaccionAsync(transaccion);

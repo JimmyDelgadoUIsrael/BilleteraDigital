@@ -1,77 +1,133 @@
 
+    
     <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:Class="BilleteraDigital.Views.vLogin"
              Title="Iniciar Sesión">
 
-    <!-- Recursos: Estilos reutilizables -->
-    <ContentPage.Resources>
-        <Style x:Key="BotonPrincipal" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="#26a69a" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="CornerRadius" Value="10" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="HeightRequest" Value="45" />
-        </Style>
+ 
+<!--Grid general y pongo el banner de login-->
+        <Grid RowDefinitions=".3*,.7*">
+            <Image Aspect="AspectFill" Source="login.png"/>
+            <Grid BackgroundColor="#087A4B" Opacity=".6"/>
+            <!--aqui ingreso me image animada tengo 2 columnas la segunda columna la ocupo con skia, para imagenes animacion loty-->
+            <Grid ColumnDefinitions="*,*">
+                <Image Aspect="AspectFit"
+                   HeightRequest="180"
+                   Source="logotipo.png"/>
+                <skia:SKLottieView Grid.Column="1"
+                               HeightRequest="160"
+                               RepeatCount="-1"
+                               Source="loginanimacion1.json"/>
+            </Grid>
 
-        <Style x:Key="CajaTexto" TargetType="Entry">
-            <Setter Property="HeightRequest" Value="40" />
-            <Setter Property="FontSize" Value="16" />
-        </Style>
 
-        <Style x:Key="TituloPrincipal" TargetType="Label">
-            <Setter Property="FontSize" Value="28" />
-            <Setter Property="HorizontalOptions" Value="Center" />
-            <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="TextColor" Value="#333" />
-            <Setter Property="Margin" Value="0,0,0,10" />
-        </Style>
-    </ContentPage.Resources>
+            <!--defino el rectangulo de fondo blanco-->
+            <Grid Grid.Row="1">
+                <RoundRectangle Margin="-5,-30,5,-2"
+                            CornerRadius="30,30,0,0"
+                            Fill="White"/>
+                <VerticalStackLayout Margin="30,0,30,0">
+                    <Label FontAttributes="Bold"
+                       FontSize="Medium"
+                       Text="Bienvenido!"
+                       TextColor="Black"/>
+                    <Label FontFamily="medium"
+                       Text="Ingresa tus credenciales"
+                       TextColor="Gray"/>
+                    <!--correo-->
+                    <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30"
-            VerticalOptions="Center">
+                        <RoundRectangle 
+                            BackgroundColor="#EDEBF6"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
 
-            <!-- Título -->
-            <Label Text="Billetera Digital"
-                   Style="{StaticResource TituloPrincipal}" />
+                        <Image 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="40" 
+                            HeightRequest="40">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="AwesomeSolid"
+                                    Glyph="&#xf007;"
+                                    Size="40" 
+                                    Color="#087a4b"/>
+                            </Image.Source>
+                        </Image>
 
-            <!-- Logo -->
-            <Image Source="logo.png"
-                   HeightRequest="120"
-                   WidthRequest="120"
-                   HorizontalOptions="Center"
-                   Margin="0,0,0,20"/>
+                        <Entry Grid.Column="1"
+                               Placeholder="EMAIL"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                    <!--contaseña-->
+                    <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
 
-            <!-- Campos de entrada -->
-            <Entry x:Name="txtnombre"
-                   Placeholder="Nombre de usuario"
-                   Style="{StaticResource CajaTexto}" />
+                        <RoundRectangle 
+                            BackgroundColor="#EDEBF6"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
 
-            <Entry x:Name="txtcontrasena"
-                   Placeholder="Contraseña"
-                   IsPassword="True"
-                   Style="{StaticResource CajaTexto}" />
+                        <Image 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="40" 
+                            HeightRequest="40">
+                            <Image.Source>
+                                <FontImageSource
+                            FontFamily="AwesomeSolid"
+                            Glyph="&#xf084;"
+                            Size="40" 
+                            Color="#087a4b"/>
+                            </Image.Source>
+                        </Image>
+                        <Entry Grid.Column="1"
+                           Placeholder="PASSWORD"
+                           IsPassword="True"                      
+                           VerticalOptions="Center"/>
+                    </Grid>
 
-            <!-- Botón Iniciar Sesión -->
-            <Button Text="Iniciar Sesión"
-                    x:Name="btnIngresar"
-                    Style="{StaticResource BotonPrincipal}"
-                    Clicked="btnIngresar_Clicked" />
+                    <Button
+                    Margin="0,20,0,0"
+                    BackgroundColor="#087a4b"
+                    HeightRequest="60"
+                    Text="Ingreso"
+                    TextColor="White"/>
 
-            <!-- Botón Registrarse -->
-            <Button Text="Registrarse"
-                    x:Name="btnRegistar"
-                    Style="{StaticResource BotonPrincipal}"
-                    Clicked="btnRegistar_Clicked" />
+                    <Button
+                    Margin="0,30,0,0"
+                    BackgroundColor="#FBF6FD"
+                    HeightRequest="60"
+                    Text="Crear una cuenta"
+                    TextColor="#087a4b"/>
 
-            <Button Text="About"
-                    x:Name="btnAbout"
-                    Clicked="btnAbout_Clicked"
-                    BackgroundColor="Gray"/>
-            
-        </VerticalStackLayout>
-    </ScrollView>
+                    <Label Margin="0,20,0,-10"
+                       HorizontalOptions="Center"
+                       Text="Olvide mi contraseña"
+                       TextColor="Blue"
+                       TextDecorations="Underline"/>
+
+
+
+                    <Button
+                    Margin="0,30,0,0"
+                    BackgroundColor="Transparent"
+                    HeightRequest="50"
+                    Text="Acerca de"
+                    TextColor="Gray"
+                    x:Name="btnAcerdaDe"
+                    Clicked="btnAbout_Clicked"/>
+
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+
 </ContentPage>

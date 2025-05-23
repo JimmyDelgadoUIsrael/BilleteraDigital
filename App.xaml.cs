@@ -1,15 +1,20 @@
-﻿namespace BilleteraDigital
+﻿using BilleteraDigital.Utilitario;
+
+namespace BilleteraDigital
 {
     public partial class App : Application
     {
-        public App()
+        public static IServiceProvider Services { get; private set; } = null!;
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
+            Services = serviceProvider;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new NavigationPage(new Views.vLogin()));
+            var db = Services.GetRequiredService<DatabaseService>();
+            return new Window(new NavigationPage(new Views.vInicio(db)));
         }
     }
 }
