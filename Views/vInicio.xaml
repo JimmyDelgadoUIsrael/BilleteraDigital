@@ -6,6 +6,7 @@
     <ScrollView>
         <StackLayout Padding="20" Spacing="15">
             <Button x:Name="btnNoticia"
+                    Text ="Noticias"
                     Clicked="btnNoticia_Clicked"/>
             <Border Stroke="#CCCCCC"
                 StrokeThickness="1"

@@ -82,6 +82,6 @@ public partial class vInicio : ContentPage
 
     private void btnNoticia_Clicked(object sender, EventArgs e)
     {
-
+        Navigation.PushAsync(new NoticiasView());
     }
 }
