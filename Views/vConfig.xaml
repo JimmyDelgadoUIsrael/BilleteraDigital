@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BilleteraDigital.Views.vConfig"
-             Title="vConfig">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+<ContentPage
+    x:Class="BilleteraDigital.Views.vConfig"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="vConfig">
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Label
+            FontAttributes="Bold"
+            FontSize="28"
+            HorizontalOptions="Center"
+            Text="Billetera Digital"
+            TextColor="#333" />
+        <Image
+            HeightRequest="150"
+            HorizontalOptions="Center"
+            Source="logotipo.png"
+            WidthRequest="150" />
+
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Picker
+                x:Name="pckModena"
+                Title="Seleccione moneda"
+                ItemsSource="{Binding Monedas}" />
+
+            <Button Clicked="btnCambioMoneda_Clicked" Text="Actualizar Moneda" />
+
+            <Label
+                x:Name="lblTasaCambio"
+                FontAttributes="Italic"
+                FontSize="14"
+                Text="Tasa de cambio: --"
+                TextColor="DarkSlateGray" />
+
+
+
+        </VerticalStackLayout>
+
+        <Button
+            x:Name="btnAbout"
+            Margin="0,20,0,0"
+            BackgroundColor="#087a4b"
+            Clicked="btnAbout_Clicked"
+            HeightRequest="60"
+            Text="About"
+            TextColor="White" />
+
     </VerticalStackLayout>
 </ContentPage>

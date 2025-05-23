@@ -1,9 +1,4 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BilleteraDigital.Modelo
 {
@@ -15,5 +10,8 @@ namespace BilleteraDigital.Modelo
         public decimal monto { get; set; }
         public string descripcion { get; set; } = string.Empty;
         public DateTime fecha { get; set; } = DateTime.Now;
+        public string moneda { get; set; } = "USD"; // Moneda por defecto
+        [Ignore]
+        public string montoMoneda => $"{monto:C} {moneda}";
     }
 }

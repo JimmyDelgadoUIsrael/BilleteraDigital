@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
-using Plugin.Fingerprint;
+using Syncfusion.Licensing;
 
 
 
@@ -10,7 +10,9 @@ namespace BilleteraDigital
     {
         public static MauiApp CreateMauiApp()
         {
+            SyncfusionLicenseProvider.RegisterLicense("@32392e302e303b32393bCcc7Mae+oozzryS8ZnL+XH6otQcfq7+nqDFEZuCBUCM=\r\n");
 
+            //SyncfusionLicenseProvider.RegisterLicense("Mzg3NzExMUAzMjM5MmUzMDJlMzAzYjMyMzkzYkJPMllkeXhXOGhOV3FCYjN3c1pMVFp4MHhJWGoxY0lPSWwrRVVRNE1kUzA9");
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
@@ -24,6 +26,7 @@ namespace BilleteraDigital
             builder.Services.AddSingleton<Utilitario.DatabaseService>();
             builder.Services.AddTransient<Views.FormularioRegistro>();
             builder.Services.AddTransient<Views.vInicio>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();
