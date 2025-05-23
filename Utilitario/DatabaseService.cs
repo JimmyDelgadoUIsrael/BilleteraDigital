@@ -14,7 +14,7 @@ namespace BilleteraDigital.Utilitario
 
         public DatabaseService()
         {
-            var config = new SQLiteConnectionString(Constante.DataBasePath, Constante.Flags, true);
+            var config = new SQLiteConnectionString(Constante.DatabasePath, Constante.Flags, true);
             _db = new SQLiteAsyncConnection(config);
             _db.CreateTableAsync<Transaccion>().Wait(); // asegúrate de haber creado la clase Transaccion
         }

@@ -2,12 +2,15 @@ using BilleteraDigital.ViewModelo;
 using Plugin.Fingerprint.Abstractions;
 using Plugin.Fingerprint;
 using System.Threading.Tasks;
+using BilleteraDigital.Utilitario;
 
 namespace BilleteraDigital.Views;
 
 public partial class vLogin : ContentPage
 {
     private readonly LoginViewModel _viewModel = new();
+    private DatabaseService db;
+
     public vLogin()
     {
         InitializeComponent();
@@ -24,7 +27,9 @@ public partial class vLogin : ContentPage
         {
             await DisplayAlert("Exito", "Inicio de sesion exitoso", "OK");
 
-            await Navigation.PushAsync(new vInicio(correo));
+            var db = App.Services.GetService<DatabaseService>();
+
+            await Navigation.PushAsync(new vInicio(db, correo));
         }
         else
         {
@@ -60,7 +65,7 @@ public partial class vLogin : ContentPage
         if (result.Authenticated)
         {
             await DisplayAlert("Éxito", "Autenticado correctamente", "OK");
-            await Navigation.PushAsync(new vInicio("correo@ejemplo.com")); // puedes pasar el correo real si lo tienes
+            await Navigation.PushAsync(new vInicio(db,"correo@ejemplo.com")); // puedes pasar el correo real si lo tienes
         }
         else
         {

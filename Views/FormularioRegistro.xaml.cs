@@ -32,27 +32,33 @@ public partial class FormularioRegistro : ContentPage
             return;
         }
 
-        if (_transaccionExistente != null)
+        try
         {
-            _transaccionExistente.tipo = TipoPicker.SelectedItem.ToString();
-            _transaccionExistente.descripcion = DescripcionEntry.Text;
-            _transaccionExistente.monto = monto;
-            await _db.ActualizarTransaccionAsync(_transaccionExistente);
-        }
-        else
-        {
-            var nueva = new Transaccion
+            if (_transaccionExistente != null)
             {
-                tipo = TipoPicker.SelectedItem.ToString(),
-                descripcion = DescripcionEntry.Text,
-                monto = monto,
-                fecha = DateTime.Now
-            };
-            await _db.AgregarTransaccionAsync(nueva);
+                _transaccionExistente.tipo = TipoPicker.SelectedItem.ToString();
+                _transaccionExistente.descripcion = DescripcionEntry.Text;
+                _transaccionExistente.monto = monto;
+                await _db.ActualizarTransaccionAsync(_transaccionExistente);
+            }
+            else
+            {
+                var nueva = new Transaccion
+                {
+                    tipo = TipoPicker.SelectedItem.ToString(),
+                    descripcion = DescripcionEntry.Text,
+                    monto = monto,
+                    fecha = DateTime.Now
+                };
+                await _db.AgregarTransaccionAsync(nueva);
+            }
+
+            await Navigation.PopModalAsync();
         }
-
-        await Navigation.PopModalAsync();
-
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Error al guardar: {ex.Message}", "OK");
+        }
     }
 
     private async void btnCancelar_Clicked(object sender, EventArgs e)

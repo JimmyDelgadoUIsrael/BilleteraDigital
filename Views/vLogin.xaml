@@ -97,7 +97,7 @@
                            VerticalOptions="Center"/>
                     </Grid>
 
-                    <Button
+                <Button
                     Margin="0,20,0,0"
                     BackgroundColor="#087a4b"
                     HeightRequest="60"
@@ -105,22 +105,12 @@
                     TextColor="White"
                     Clicked="btnIngresar_Clicked"/>
 
-                    <Button
-                    Margin="0,30,0,0"
-                    BackgroundColor="#FBF6FD"
-                    HeightRequest="60"
-                    Text="Crear una cuenta"
-                    TextColor="#087a4b"/>
-
-                    <Label Margin="0,20,0,-10"
+                <Label Margin="0,20,0,-10"
                        HorizontalOptions="Center"
                        Text="Olvide mi contraseña"
                        TextColor="Blue"
                        TextDecorations="Underline"/>
-
-
-
-                    <Button
+                <Button
                     Margin="0,30,0,0"
                     BackgroundColor="#FBF6FD"
                     HeightRequest="60"

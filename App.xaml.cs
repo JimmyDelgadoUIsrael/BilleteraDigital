@@ -13,8 +13,7 @@ namespace BilleteraDigital
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            var db = Services.GetRequiredService<DatabaseService>();
-            return new Window(new NavigationPage(new Views.vInicio(db)));
+            return new Window(new NavigationPage(new Views.vLogin()));
         }
     }
 }
