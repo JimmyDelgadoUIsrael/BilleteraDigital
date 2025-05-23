@@ -61,7 +61,7 @@
                     <Entry x:Name="txtCorreo" Grid.Column="1"
                                Placeholder="EMAIL"
                                VerticalOptions="Center"
-/>
+                                TextColor="Black"    />
                 </Grid>
     <!--contaseña-->
                 <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">

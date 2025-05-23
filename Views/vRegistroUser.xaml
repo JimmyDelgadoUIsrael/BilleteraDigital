@@ -56,7 +56,7 @@
                            Grid.Column="1"
                            Placeholder="EMAIL"
                            Keyboard="Email"
-                           VerticalOptions="Center"/>
+                           VerticalOptions="Center" TextColor="Black"/>
                     </Grid>
 
                     <!-- Contraseña -->
@@ -83,7 +83,7 @@
                            Grid.Column="1"
                            Placeholder="CONTRASEÑA"
                            IsPassword="True"
-                           VerticalOptions="Center"/>
+                           VerticalOptions="Center" TextColor="Black"/>
                     </Grid>
 
                     <Button Margin="0,30,0,0"
