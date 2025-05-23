@@ -1,0 +1,39 @@
+
+# COMANDOS DE GIT
+
+---Subir cambios locales de Jimmy a remoto----
+##Asegúrate de estar en la rama Jimmy
+git checkout Jimmy
+##Verifica qué archivos están modificados
+git status
+##Añade y haz commit de tus cambios (si no lo has hecho)
+git add .
+git commit -m "Tu mensaje descriptivo del cambio"
+##Sube la rama al repositorio remoto
+git push origin Jimmy
+
+---fusionar Jimmy remoto → master remoto--
+# Cambia a master local
+git checkout master
+# Trae los últimos cambios del repositorio remoto
+git fetch origin
+# Actualiza master local con el remoto
+git pull origin master
+# Trae los últimos cambios de Jimmy remoto
+git checkout -b Jimmy-remote origin/Jimmy
+
+----Actualizar todas las ramas remotas con los cambios de master---
+git checkout Jimmy
+git pull origin Jimmy
+git merge master
+git push origin Jimmy
+
+--- Merge de master en Jimmy---
+# Asegúrate de estar en la rama Jimmy
+git checkout Jimmy
+#Trae la última versión del remoto
+git fetch origin
+#Fusiona los cambios de master remoto en Jimmy local
+git merge origin/master
+
+
