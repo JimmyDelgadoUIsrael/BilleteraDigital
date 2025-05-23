@@ -1,9 +1,9 @@
-using System; // Asegúrate de que System esté aquí
+ï»¿using System; // AsegÃºrate de que System estÃ© aquÃ­
 using System.Text.Json;
 using System.Net.Http;
 using System.Windows.Input; // Necesario para ICommand y Command
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.ApplicationModel; // ¡MUY IMPORTANTE! Necesario para Launcher.OpenAsync
+using Microsoft.Maui.ApplicationModel; // Â¡MUY IMPORTANTE! Necesario para Launcher.OpenAsync
 using BilleteraDigital.Modelo;
 
 namespace BilleteraDigital.Views
@@ -18,7 +18,7 @@ namespace BilleteraDigital.Views
 
             OpenUrlCommand = new Command<string>(async (url) =>
             {
-                // **Paso 1: Verificar si la URL es nula o vacía**
+                // **Paso 1: Verificar si la URL es nula o vacÃ­a**
                 if (!string.IsNullOrWhiteSpace(url))
                 {
                     try
@@ -28,53 +28,68 @@ namespace BilleteraDigital.Views
                     }
                     catch (Exception ex)
                     {
-                        // **Paso 3: Capturar cualquier error al abrir la URL (por ejemplo, formato inválido)**
+                        // **Paso 3: Capturar cualquier error al abrir la URL (por ejemplo, formato invÃ¡lido)**
                         await DisplayAlert("Error al abrir URL", $"No se pudo abrir la URL: {url}. Detalles: {ex.Message}", "OK");
                         Console.WriteLine($"Error al abrir URL: {url}. Detalles: {ex.Message}");
                     }
                 }
                 else
                 {
-                    // **Paso 4: Mostrar una alerta si la URL no está disponible**
-                    await DisplayAlert("URL no disponible", "Este artículo no tiene una URL válida para ver el contenido completo.", "OK");
-                    Console.WriteLine("Intento de abrir URL nula o vacía.");
+                    // **Paso 4: Mostrar una alerta si la URL no estÃ¡ disponible**
+                    await DisplayAlert("URL no disponible", "Este artÃ­culo no tiene una URL vÃ¡lida para ver el contenido completo.", "OK");
+                    Console.WriteLine("Intento de abrir URL nula o vacÃ­a.");
                 }
             });
 
             LoadNewsData(); // Se llama a LoadNewsData para cargar las noticias
         }
 
-        // ... El resto del código de LoadNewsData() debería estar aquí ...
-        // ... (Tu código para LoadNewsData, que ya sabemos que funciona a veces, debería ir aquí) ...
+        // ... El resto del cÃ³digo de LoadNewsData() deberÃ­a estar aquÃ­ ...
+        // ... (Tu cÃ³digo para LoadNewsData, que ya sabemos que funciona a veces, deberÃ­a ir aquÃ­) ...
         private async void LoadNewsData()
         {
-            string apiKey = "f82ea0142aff43f8a8c6b96f9dee649f"; // Tu API Key
+            string apiKey = "f82ea0142aff43f8a8c6b96f9dee649f";
             string apiUrl = $"https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey={apiKey}";
 
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
-                    var response = await client.GetStringAsync(apiUrl);
-                    var newsResponse = JsonSerializer.Deserialize<NewsResponse>(response, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                    BindingContext = newsResponse;
+                    client.DefaultRequestHeaders.Add("User-Agent", "MAUIApp/1.0"); // ðŸ‘ˆ importante
+
+                    var response = await client.GetAsync(apiUrl);
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    Console.WriteLine($"Status: {response.StatusCode}");
+                    Console.WriteLine($"Response body: {content}");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var newsResponse = JsonSerializer.Deserialize<NewsResponse>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                        BindingContext = newsResponse;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error de API", $"CÃ³digo de estado: {response.StatusCode}\nContenido: {content}", "OK");
+                    }
                 }
                 catch (HttpRequestException ex)
                 {
-                    await DisplayAlert("Error de Conexión", $"No se pudieron cargar las noticias. Verifica tu conexión a internet o la API Key. Detalles: {ex.Message}", "OK");
-                    Console.WriteLine($"Error HTTP al cargar noticias: {ex.Message}");
+                    await DisplayAlert("Error de ConexiÃ³n", $"No se pudieron cargar las noticias. Detalles: {ex.Message}", "OK");
+                    Console.WriteLine($"Error HTTP: {ex.Message}");
                 }
                 catch (JsonException ex)
                 {
-                    await DisplayAlert("Error de Datos", $"No se pudo procesar la información de las noticias. Detalles: {ex.Message}", "OK");
-                    Console.WriteLine($"Error de JSON al cargar noticias: {ex.Message}");
+                    await DisplayAlert("Error de Datos", $"No se pudo procesar la informaciÃ³n. Detalles: {ex.Message}", "OK");
+                    Console.WriteLine($"Error JSON: {ex.Message}");
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert("Error Inesperado", $"Ocurrió un error inesperado al cargar las noticias. Detalles: {ex.Message}", "OK");
-                    Console.WriteLine($"Error General al cargar noticias: {ex.Message}");
+                    await DisplayAlert("Error Inesperado", $"OcurriÃ³ un error inesperado. Detalles: {ex.Message}", "OK");
+                    Console.WriteLine($"Error General: {ex.Message}");
                 }
             }
         }
+
     }
 }
