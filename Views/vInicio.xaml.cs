@@ -97,6 +97,6 @@ public partial class vInicio : ContentPage
 
     private void btnExport_Clicked(object sender, EventArgs e)
     {
-
+        Navigation.PushAsync(new vReporte(_db));
     }
 }
