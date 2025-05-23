@@ -9,13 +9,14 @@ namespace BilleteraDigital.Utilitario
 {
     public static class Constante
     {
-        public static string DataBasePath {
-            get
-            {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                return System.IO.Path.Combine(path, "DB_FINANZAS.db");
-            }
-        }
-        public static SQLiteOpenFlags Flags = SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.SharedCache;
+        public const string DatabaseFilename = "billetera.db3";
+
+        public static string DatabasePath =>
+            Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
+
+        public static SQLite.SQLiteOpenFlags Flags =>
+            SQLite.SQLiteOpenFlags.ReadWrite |
+            SQLite.SQLiteOpenFlags.Create |
+            SQLite.SQLiteOpenFlags.SharedCache;
     }
 }

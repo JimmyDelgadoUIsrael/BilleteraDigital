@@ -13,10 +13,9 @@ namespace BilleteraDigital.Modelo
 
         public int id { get; set; }
 
-        [Unique]
-        public string nombreusuario { get; set; } = string.Empty;
-        public string contrasena { get; set; } = string.Empty;
-        public string rol { get; set; } = string.Empty;
-        public bool estado { get; set; } = true;
+        [Unique, NotNull]
+        public string Correo { get; set; } = string.Empty;
+        public string Contrasena { get; set; } = string.Empty;
+        
     }
 }

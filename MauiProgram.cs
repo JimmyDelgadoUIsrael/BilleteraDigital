@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
+using Plugin.Fingerprint;
+
+
 
 namespace BilleteraDigital
 {
@@ -7,6 +10,7 @@ namespace BilleteraDigital
     {
         public static MauiApp CreateMauiApp()
         {
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
