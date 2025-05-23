@@ -7,7 +7,6 @@
              Title="Iniciar Sesión">
 
  
-<!--Grid general y pongo el banner de login-->
         <Grid RowDefinitions=".3*,.7*">
             <Image Aspect="AspectFill" Source="login.png"/>
             <Grid BackgroundColor="#087A4B" Opacity=".6"/>
