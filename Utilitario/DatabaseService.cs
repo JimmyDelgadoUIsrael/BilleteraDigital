@@ -14,7 +14,7 @@ namespace BilleteraDigital.Utilitario
 
         public DatabaseService()
         {
-            var config = new SQLiteConnectionString(Constante.DataBasePath, Constante.Flags, true);
+            var config = new SQLiteConnectionString(Constante.DatabasePath, Constante.Flags, true);
             _db = new SQLiteAsyncConnection(config);
             _db.CreateTableAsync<Transaccion>().Wait(); // asegúrate de haber creado la clase Transaccion
         }
@@ -24,5 +24,12 @@ namespace BilleteraDigital.Utilitario
 
         public Task<List<Transaccion>> ObtenerTransaccionesAsync() =>
             _db.Table<Transaccion>().OrderByDescending(t => t.fecha).ToListAsync();
+
+        public Task<int> ActualizarTransaccionAsync(Transaccion t) =>
+            _db.UpdateAsync(t);
+
+        public Task<int> EliminarTransaccionAsync(Transaccion t) =>
+            _db.DeleteAsync(t);
+
     }
 }

@@ -60,12 +60,13 @@
                             </Image.Source>
                         </Image>
 
-                        <Entry Grid.Column="1"
+                    <Entry x:Name="txtCorreo" Grid.Column="1"
                                Placeholder="EMAIL"
-                               VerticalOptions="Center"/>
-                    </Grid>
-                    <!--contaseña-->
-                    <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
+                               VerticalOptions="Center"
+                                TextColor="Black"    />
+                </Grid>
+    <!--contaseña-->
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
 
                         <RoundRectangle 
                             BackgroundColor="#EDEBF6"
@@ -86,44 +87,42 @@
                             Glyph="&#xf084;"
                             Size="40" 
                             Color="#087a4b"/>
-                            </Image.Source>
-                        </Image>
-                        <Entry Grid.Column="1"
+                        </Image.Source>
+                    </Image>
+                    
+                           <Entry  x:Name="txtPassword" Grid.Column="1"
                            Placeholder="PASSWORD"
                            IsPassword="True"                      
                            VerticalOptions="Center"/>
                     </Grid>
 
-                    <Button
+                <Button
                     Margin="0,20,0,0"
                     BackgroundColor="#087a4b"
                     HeightRequest="60"
                     Text="Ingreso"
-                    TextColor="White"/>
+                    TextColor="White"
+                    Clicked="btnIngresar_Clicked"/>
 
-                    <Button
-                    Margin="0,30,0,0"
-                    BackgroundColor="#FBF6FD"
-                    HeightRequest="60"
-                    Text="Crear una cuenta"
-                    TextColor="#087a4b"/>
-
-                    <Label Margin="0,20,0,-10"
+                <Label Margin="0,20,0,-10"
                        HorizontalOptions="Center"
                        Text="Olvide mi contraseña"
                        TextColor="Blue"
                        TextDecorations="Underline"/>
-
-
-
-                    <Button
+                <Button
                     Margin="0,30,0,0"
-                    BackgroundColor="Transparent"
-                    HeightRequest="50"
-                    Text="Acerca de"
-                    TextColor="Gray"
-                    x:Name="btnAcerdaDe"
-                    Clicked="btnAbout_Clicked"/>
+                    BackgroundColor="#FBF6FD"
+                    HeightRequest="60"
+                    Text="Crear una cuenta"
+                    TextColor="#087a4b"
+                    Clicked="OnCrearCuentaClicked"/>
+
+                <Button Text="Ingresar con Huella"
+                     Clicked="OnHuellaClicked"
+                      BackgroundColor="#087A4B"
+                      TextColor="White"
+                        Margin="0,20,0,0"/>
+
 
                 </VerticalStackLayout>
             </Grid>

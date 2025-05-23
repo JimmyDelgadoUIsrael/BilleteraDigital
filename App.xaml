@@ -4,11 +4,21 @@
              xmlns:local="clr-namespace:BilleteraDigital"
              x:Class="BilleteraDigital.App">
     <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <Color x:Key="PrimaryColor">#6200EE</Color>
+        <Color x:Key="PageBackgroundColor">#F5F5F5</Color>
+        <Color x:Key="DangerColor">#D32F2F</Color>
+        <Color x:Key="SuccessColor">#388E3C</Color>
+
+        <Style TargetType="Button">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="HeightRequest" Value="45"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
     </Application.Resources>
+
 </Application>

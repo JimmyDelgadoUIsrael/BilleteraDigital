@@ -1,22 +1,68 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BilleteraDigital.Views.FormularioRegistro"
-             Title="FormularioRegistro">
-    <StackLayout Padding="20" Spacing="10">
-        <Picker x:Name="TipoPicker" Title="Tipo">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Ingreso</x:String>
-                    <x:String>Gasto</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             Title="Registrar Transacción">
 
-        <Entry x:Name="DescripcionEntry" Placeholder="Descripción" />
-        <Entry x:Name="MontoEntry" Placeholder="Monto" Keyboard="Numeric" />
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
 
-        <Button x:Name="btnGuardar" Text="Guardar" Clicked="btnGuardar_Clicked"/>
-        <Button x:Name="btnCancelar" Text="Cancelar" Clicked="btnCancelar_Clicked"/>
-    </StackLayout>
+            <Label Text="Tipo de Transacción" FontAttributes="Bold" FontSize="16"/>
+
+            <Border BackgroundColor="White"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="5">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.15" Offset="5,5" Radius="8"/>
+                </Border.Shadow>
+                <Picker x:Name="TipoPicker">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Ingreso</x:String>
+                            <x:String>Gasto</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Border>
+
+            <Label Text="Descripción" FontAttributes="Bold" FontSize="16"/>
+
+            <Border BackgroundColor="White"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="5">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.15" Offset="5,5" Radius="8"/>
+                </Border.Shadow>
+                <Entry x:Name="DescripcionEntry" Placeholder="Ej. Sueldo, comida..." />
+            </Border>
+
+            <Label Text="Monto" FontAttributes="Bold" FontSize="16"/>
+
+            <Border BackgroundColor="White"
+                    Stroke="LightGray"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="5">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.15" Offset="5,5" Radius="8"/>
+                </Border.Shadow>
+                <Entry x:Name="MontoEntry" Placeholder="$0.00" Keyboard="Numeric" />
+            </Border>
+
+            <Button Text="💾 Guardar"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="10"
+                    Clicked="btnGuardar_Clicked"/>
+
+            <Button Text="❌ Cancelar"
+                    BackgroundColor="#F44336"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Clicked="btnCancelar_Clicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
