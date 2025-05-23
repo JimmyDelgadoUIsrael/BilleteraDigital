@@ -10,7 +10,7 @@ public partial class vInicio : ContentPage
 	{
 		InitializeComponent();
         _db = db;
-        lblUsuario.Text = correo;
+        lblUsuario.Text = correo.ToUpper();
     }
 
     protected override async void OnAppearing()
@@ -71,7 +71,7 @@ public partial class vInicio : ContentPage
         var transaccion = (sender as Button)?.CommandParameter as Modelo.Transaccion;
         if (transaccion != null)
         {
-            var confirm = await DisplayAlert("Confirmar", "�Eliminar esta transacci�n?", "S�", "No");
+            var confirm = await DisplayAlert("Confirmar", "Eliminar esta transacciín?", "Sí", "No");
             if (confirm)
             {
                 await _db.EliminarTransaccionAsync(transaccion);
