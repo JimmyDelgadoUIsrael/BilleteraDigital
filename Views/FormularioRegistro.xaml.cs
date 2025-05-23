@@ -1,7 +1,6 @@
+using BilleteraDigital.Configuraciones;
 using BilleteraDigital.Modelo;
 using BilleteraDigital.Utilitario;
-using System.Threading.Tasks;
-
 namespace BilleteraDigital.Views;
 
 public partial class FormularioRegistro : ContentPage
@@ -9,10 +8,12 @@ public partial class FormularioRegistro : ContentPage
     private readonly DatabaseService _db;
     private Transaccion _transaccionExistente;
     public FormularioRegistro(DatabaseService db, Transaccion? transaccion = null)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _db = db;
         _transaccionExistente = transaccion;
+
+        MontoEntry.Placeholder = $"0.00 {ConfiguracionUsuario.MonedaSeleccionada}";
 
         if (_transaccionExistente != null)
         {
@@ -39,6 +40,8 @@ public partial class FormularioRegistro : ContentPage
                 _transaccionExistente.tipo = TipoPicker.SelectedItem.ToString();
                 _transaccionExistente.descripcion = DescripcionEntry.Text;
                 _transaccionExistente.monto = monto;
+
+
                 await _db.ActualizarTransaccionAsync(_transaccionExistente);
             }
             else
@@ -48,7 +51,8 @@ public partial class FormularioRegistro : ContentPage
                     tipo = TipoPicker.SelectedItem.ToString(),
                     descripcion = DescripcionEntry.Text,
                     monto = monto,
-                    fecha = DateTime.Now
+                    fecha = DateTime.Now,
+                    moneda = ConfiguracionUsuario.MonedaSeleccionada
                 };
                 await _db.AgregarTransaccionAsync(nueva);
             }

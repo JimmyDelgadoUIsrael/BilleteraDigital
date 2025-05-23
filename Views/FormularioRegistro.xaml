@@ -1,20 +1,29 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BilleteraDigital.Views.FormularioRegistro"
-             BackgroundColor="{DynamicResource PageBackgroundColor}"
-             Title="Registrar Transacción">
+<ContentPage
+    x:Class="BilleteraDigital.Views.FormularioRegistro"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Registrar Transacción"
+    BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
-            <Label Text="Tipo de Transacción" FontAttributes="Bold" FontSize="16"/>
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Tipo de Transacción" />
 
-            <Border BackgroundColor="White"
-                    Stroke="LightGray"
-                    StrokeShape="RoundRectangle 10"
-                    Padding="5">
+            <Border
+                Padding="5"
+                BackgroundColor="White"
+                Stroke="LightGray"
+                StrokeShape="RoundRectangle 10">
                 <Border.Shadow>
-                    <Shadow Brush="Black" Opacity="0.15" Offset="5,5" Radius="8"/>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.15"
+                        Radius="8"
+                        Offset="5,5" />
                 </Border.Shadow>
                 <Picker x:Name="TipoPicker">
                     <Picker.ItemsSource>
@@ -26,42 +35,64 @@
                 </Picker>
             </Border>
 
-            <Label Text="Descripción" FontAttributes="Bold" FontSize="16"/>
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Descripción" />
 
-            <Border BackgroundColor="White"
-                    Stroke="LightGray"
-                    StrokeShape="RoundRectangle 10"
-                    Padding="5">
+            <Border
+                Padding="5"
+                BackgroundColor="White"
+                Stroke="LightGray"
+                StrokeShape="RoundRectangle 10">
                 <Border.Shadow>
-                    <Shadow Brush="Black" Opacity="0.15" Offset="5,5" Radius="8"/>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.15"
+                        Radius="8"
+                        Offset="5,5" />
                 </Border.Shadow>
                 <Entry x:Name="DescripcionEntry" Placeholder="Ej. Sueldo, comida..." />
             </Border>
 
-            <Label Text="Monto" FontAttributes="Bold" FontSize="16"/>
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Monto" />
 
-            <Border BackgroundColor="White"
-                    Stroke="LightGray"
-                    StrokeShape="RoundRectangle 10"
-                    Padding="5">
+            <Border
+                Padding="5"
+                BackgroundColor="White"
+                Stroke="LightGray"
+                StrokeShape="RoundRectangle 10">
                 <Border.Shadow>
-                    <Shadow Brush="Black" Opacity="0.15" Offset="5,5" Radius="8"/>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.15"
+                        Radius="8"
+                        Offset="5,5" />
                 </Border.Shadow>
-                <Entry x:Name="MontoEntry" Placeholder="$0.00" Keyboard="Numeric" />
+                <Entry
+                    x:Name="MontoEntry"
+                    Keyboard="Numeric"
+                    Placeholder="{x:Static local:ConfiguracionUsuario.MonedaSeleccionada}" />
+
             </Border>
 
-            <Button Text="💾 Guardar"
-                    BackgroundColor="#4CAF50"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    CornerRadius="10"
-                    Clicked="btnGuardar_Clicked"/>
+            <Button
+                BackgroundColor="#4CAF50"
+                Clicked="btnGuardar_Clicked"
+                CornerRadius="10"
+                FontAttributes="Bold"
+                Text="💾 Guardar"
+                TextColor="White" />
 
-            <Button Text="❌ Cancelar"
-                    BackgroundColor="#F44336"
-                    TextColor="White"
-                    CornerRadius="10"
-                    Clicked="btnCancelar_Clicked"/>
+            <Button
+                BackgroundColor="#F44336"
+                Clicked="btnCancelar_Clicked"
+                CornerRadius="10"
+                Text="❌ Cancelar"
+                TextColor="White" />
 
         </VerticalStackLayout>
     </ScrollView>
