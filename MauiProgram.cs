@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
-using Plugin.Fingerprint;
 
 
 
@@ -24,6 +23,7 @@ namespace BilleteraDigital
             builder.Services.AddSingleton<Utilitario.DatabaseService>();
             builder.Services.AddTransient<Views.FormularioRegistro>();
             builder.Services.AddTransient<Views.vInicio>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();

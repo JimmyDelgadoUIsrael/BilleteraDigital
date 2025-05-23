@@ -2,6 +2,7 @@
     x:Class="BilleteraDigital.Views.FormularioRegistro"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:config="clr-namespace:BilleteraDigital.Configuraciones"
     Title="Registrar Transacción"
     BackgroundColor="{DynamicResource PageBackgroundColor}">
 
@@ -75,7 +76,8 @@
                 <Entry
                     x:Name="MontoEntry"
                     Keyboard="Numeric"
-                    Placeholder="{x:Static local:ConfiguracionUsuario.MonedaSeleccionada}" />
+                    Placeholder="{x:Static config:ConfiguracionUsuario.MonedaSeleccionada}" />
+
 
             </Border>
 

@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
-namespace BilleteraDigital.Servicio
+namespace BilleteraDigital.Utilitario
 {
     public class CurrencyService
     {
@@ -13,11 +14,39 @@ namespace BilleteraDigital.Servicio
             _httpClient = new HttpClient();
         }
 
+        public async Task<List<string>> GetAvailableCurrenciesAsync()
+        {
+            try
+            {
+                string url = $"{BaseUrl}?Apikey={ApiKey}";
+                var response = await _httpClient.GetAsync(url);
+
+                if (!response.IsSuccessStatusCode)
+                    return new List<string>();
+
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("========== RESPUESTA DE LA API FXRATES ==========");
+                Console.WriteLine(content);
+                System.Diagnostics.Debug.WriteLine($"Respuesta: {content}");
+                Console.WriteLine("=================================================");
+                var result = JsonSerializer.Deserialize<ExchangeRateResponse>(content);
+
+                if (result?.Rates != null)
+                    return result.Rates.Keys.ToList();
+
+                return new List<string>();
+            }
+            catch
+            {
+                return new List<string>();
+            }
+        }
+
         public async Task<decimal?> GetExchangeRateAsync(string fromCurrency, string toCurrency)
         {
             try
             {
-                string url = $"{BaseUrl}?base={fromCurrency}&symbols={toCurrency}&apikey={ApiKey}";
+                string url = $"{BaseUrl}?Apikey={ApiKey}&base={fromCurrency}&symbols={toCurrency}";
                 var response = await _httpClient.GetAsync(url);
 
                 if (!response.IsSuccessStatusCode)
@@ -27,9 +56,7 @@ namespace BilleteraDigital.Servicio
                 var result = JsonSerializer.Deserialize<ExchangeRateResponse>(content);
 
                 if (result?.Rates != null && result.Rates.TryGetValue(toCurrency, out var rate))
-                {
                     return rate;
-                }
 
                 return null;
             }
@@ -42,7 +69,10 @@ namespace BilleteraDigital.Servicio
 
     public class ExchangeRateResponse
     {
+        [JsonPropertyName("base")]
         public string Base { get; set; }
+
+        [JsonPropertyName("rates")]
         public Dictionary<string, decimal> Rates { get; set; }
     }
 }

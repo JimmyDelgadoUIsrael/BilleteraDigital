@@ -1,4 +1,5 @@
-﻿using BilleteraDigital.Servicio;
+﻿
+using BilleteraDigital.Configuraciones;
 using BilleteraDigital.Utilitario;
 
 namespace BilleteraDigital.Views;
@@ -17,6 +18,10 @@ public partial class vInicio : ContentPage
     {
         base.OnAppearing();
         await CargarTransaccionesAsync();
+
+        string monedaGuardada = ConfiguracionUsuario.MonedaSeleccionada;
+        lblMoneda.Text = "Modena Selecionada: " + monedaGuardada;
+
     }
     private async Task CargarTransaccionesAsync()
     {
@@ -88,5 +93,10 @@ public partial class vInicio : ContentPage
     private async void btnConfig_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new vConfig(_db, new CurrencyService()));
+    }
+
+    private void btnExport_Clicked(object sender, EventArgs e)
+    {
+
     }
 }

@@ -17,21 +17,25 @@
             Source="logotipo.png"
             WidthRequest="150" />
 
-        <Picker x:Name="pckModena" Title="Selecciona Moneda">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>USD</x:String>
-                    <x:String>EUR</x:String>
-                    <x:String>MXN</x:String>
-                    <x:String>JPY</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-        <Button
-            x:Name="btnCambioMoneda"
-            Clicked="btnCambioMoneda_Clicked"
-            Text="Guardar Moneda" />
+        <VerticalStackLayout Padding="20" Spacing="15">
 
+            <Picker
+                x:Name="pckModena"
+                Title="Seleccione moneda"
+                ItemsSource="{Binding Monedas}" />
+
+            <Button Clicked="btnCambioMoneda_Clicked" Text="Actualizar Moneda" />
+
+            <Label
+                x:Name="lblTasaCambio"
+                FontAttributes="Italic"
+                FontSize="14"
+                Text="Tasa de cambio: --"
+                TextColor="DarkSlateGray" />
+
+
+
+        </VerticalStackLayout>
 
         <Button
             x:Name="btnAbout"

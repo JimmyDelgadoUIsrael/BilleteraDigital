@@ -3,18 +3,19 @@
     x:Class="BilleteraDigital.Views.vInicio"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:config="clr-namespace:BilleteraDigital.Configuraciones"
     Title="vInicio">
     <ScrollView>
         <StackLayout Padding="20" Spacing="15">
             <Button
                 x:Name="btnConfig"
                 Clicked="btnConfig_Clicked"
-                Text="Configuraciones" />
+                Text="⚙️ Configuraciones" />
 
             <Button
                 x:Name="btnNoticia"
                 Clicked="btnNoticia_Clicked"
-                Text="Noticias" />
+                Text="📰 Noticias" />
             <Border
                 Margin="0,0,0,10"
                 Padding="15"
@@ -40,7 +41,7 @@
                         Text="👤 Usuario: Nombre"
                         TextColor="#333" />
 
-                    <Label Text="{x:Static local:ConfiguracionUsuario.MonedaSeleccionada}" />
+                    <Label x:Name="lblMoneda" Text="" />
 
                     <!--  Ingresos y gastos  -->
                     <HorizontalStackLayout Spacing="20">
@@ -68,6 +69,12 @@
                 x:Name="btnNuevo"
                 Clicked="btnNuevo_Clicked"
                 Text="➕ Nuevo" />
+
+
+            <Button
+                x:Name="btnExport"
+                Clicked="btnExport_Clicked"
+                Text="📤 Exportar" />
             <CollectionView x:Name="TransaccionesView" Margin="0,10">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
