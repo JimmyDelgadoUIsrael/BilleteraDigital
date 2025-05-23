@@ -104,6 +104,9 @@
 	  <MauiXaml Update="Views\vReporte.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\vRestablecerContrasena.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

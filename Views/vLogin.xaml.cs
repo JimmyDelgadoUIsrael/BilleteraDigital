@@ -1,8 +1,13 @@
-using BilleteraDigital.ViewModelo;
-using Plugin.Fingerprint.Abstractions;
-using Plugin.Fingerprint;
-using System.Threading.Tasks;
+using BilleteraDigital.Modelo;
 using BilleteraDigital.Utilitario;
+using BilleteraDigital.ViewModelo;
+using Microsoft.Maui.Storage;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
+using System.Threading.Tasks;
+
+
+
 
 namespace BilleteraDigital.Views;
 
@@ -22,9 +27,11 @@ public partial class vLogin : ContentPage
         string contrasena = txtPassword.Text;
 
         bool valido = await _viewModel.IniciarSesionAsync(correo, contrasena);
+        Preferences.Set("UsuarioCorreo", correo);
 
         if (valido)
         {
+            Preferences.Set("UsuarioCorreo",correo);
             await DisplayAlert("Exito", "Inicio de sesion exitoso", "OK");
 
             var db = App.Services.GetService<DatabaseService>();
@@ -64,12 +71,27 @@ public partial class vLogin : ContentPage
 
         if (result.Authenticated)
         {
-            await DisplayAlert("Éxito", "Autenticado correctamente", "OK");
-            await Navigation.PushAsync(new vInicio(db,"correo@ejemplo.com")); // puedes pasar el correo real si lo tienes
+            var correoGuardado = Preferences.Get("UsuarioCorreo", null);
+
+            if (!string.IsNullOrEmpty(correoGuardado))
+            {
+                var db = App.Services.GetService<DatabaseService>();
+                await DisplayAlert("Éxito", "Autenticado correctamente", "OK");
+                await Navigation.PushAsync(new vInicio(db, correoGuardado)); // puedes pasar el correo real si lo tienes
+            }
+            else
+            {
+                await DisplayAlert("Sin sesion", "No se encontro usuario vinculado a esta huella", "OK");
+            }
         }
         else
         {
-            await DisplayAlert("Error", "La autenticación ha fallado", "OK");
+            await DisplayAlert("Error", "La Autenticacion ha fallado", "OK");
         }
     }
-  }
+
+    private async void OnOlvideContraseñaTapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushAsync(new vRestablecerContrasena());
+    }
+}

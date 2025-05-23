@@ -97,7 +97,7 @@
                         Margin="0,30,0,0"
                         BackgroundColor="#FBF6FD"
                         HeightRequest="60"
-                        Text="Ya soy cliente"
+                        Text="Ya tengo una cuenta"
                         TextColor="#087a4b"
                         Clicked="OnAtras"/>
                     
