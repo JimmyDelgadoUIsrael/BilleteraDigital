@@ -1,10 +1,6 @@
-﻿using System; // Asegúrate de que System esté aquí
+﻿using BilleteraDigital.Modelo;
 using System.Text.Json;
-using System.Net.Http;
 using System.Windows.Input; // Necesario para ICommand y Command
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.ApplicationModel; // ¡MUY IMPORTANTE! Necesario para Launcher.OpenAsync
-using BilleteraDigital.Modelo;
 
 namespace BilleteraDigital.Views
 {
@@ -49,7 +45,7 @@ namespace BilleteraDigital.Views
         private async void LoadNewsData()
         {
             string apiKey = "f82ea0142aff43f8a8c6b96f9dee649f";
-            string apiUrl = $"https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey={apiKey}";
+            string apiUrl = $"https://newsapi.org/v2/everything?q=economía&language=es&sortBy=publishedAt&apiKey={apiKey}";
 
             using (HttpClient client = new HttpClient())
             {

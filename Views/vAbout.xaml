@@ -23,7 +23,7 @@
             <Image
                 HeightRequest="150"
                 HorizontalOptions="Center"
-                Source="logo.png"
+                Source="logotipo.png"
                 WidthRequest="150" />
 
             <!--  Información del desarrollador  -->

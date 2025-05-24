@@ -1,12 +1,74 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BilleteraDigital.Views.vReporte"
-             Title="vReporte">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="BilleteraDigital.Views.vReporte"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:charts="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+    Title="vReporte">
+    <!--  xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"  -->
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="20"
+            VerticalOptions="Center">
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="28"
+                HorizontalOptions="Center"
+                Text="Billetera Digital"
+                TextColor="#333" />
+
+            <Image
+                HeightRequest="150"
+                HorizontalOptions="Center"
+                Source="logotipo.png"
+                WidthRequest="150" />
+
+            <charts:SfCircularChart x:Name="TransaccionesChart" HeightRequest="300">
+                <charts:SfCircularChart.Legend>
+                    <charts:ChartLegend Placement="Bottom" />
+                </charts:SfCircularChart.Legend>
+
+                <charts:SfCircularChart.Series>
+                    <charts:PieSeries
+                        EnableAnimation="True"
+                        ItemsSource="{Binding TransaccionesResumen}"
+                        ShowDataLabels="True"
+                        XBindingPath="Tipo"
+                        YBindingPath="Monto">
+                        <charts:PieSeries.DataLabelSettings>
+                            <charts:CircularDataLabelSettings LabelPlacement="Outer">
+                                <charts:CircularDataLabelSettings.LabelStyle>
+                                    <charts:ChartDataLabelStyle LabelFormat="#.##'$" />
+                                </charts:CircularDataLabelSettings.LabelStyle>
+                            </charts:CircularDataLabelSettings>
+                        </charts:PieSeries.DataLabelSettings>
+                    </charts:PieSeries>
+                </charts:SfCircularChart.Series>
+            </charts:SfCircularChart>
+
+
+            <Button
+                x:Name="btnExporteExcel"
+                Margin="0,20,0,0"
+                BackgroundColor="#087a4b"
+                Clicked="btnExporteExcel_Clicked"
+                HeightRequest="60"
+                Text="📊 Exportar en Excel"
+                TextColor="White" />
+
+            <Button
+                x:Name="btnExportePdf"
+                Margin="0,20,0,0"
+                BackgroundColor="#B00020"
+                Clicked="btnExportePdf_Clicked"
+                HeightRequest="60"
+                Text="🧾 Exportar en PDF"
+                TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

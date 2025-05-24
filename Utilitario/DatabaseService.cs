@@ -1,10 +1,5 @@
 ﻿using BilleteraDigital.Modelo;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BilleteraDigital.Utilitario
 {
@@ -30,6 +25,14 @@ namespace BilleteraDigital.Utilitario
 
         public Task<int> EliminarTransaccionAsync(Transaccion t) =>
             _db.DeleteAsync(t);
+
+        public async Task<int> GuardarTransaccionAsync(Transaccion t)
+        {
+            if (t.id != 0)
+                return await _db.UpdateAsync(t);
+            else
+                return await _db.InsertAsync(t);
+        }
 
     }
 }
