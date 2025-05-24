@@ -1,8 +1,7 @@
-using BilleteraDigital.ViewModelo;
-using Plugin.Fingerprint.Abstractions;
-using Plugin.Fingerprint;
-using System.Threading.Tasks;
 using BilleteraDigital.Utilitario;
+using BilleteraDigital.ViewModelo;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
 
 namespace BilleteraDigital.Views;
 
@@ -16,7 +15,7 @@ public partial class vLogin : ContentPage
         InitializeComponent();
     }
 
-    private  async void btnIngresar_Clicked(object sender, EventArgs e)
+    private async void btnIngresar_Clicked(object sender, EventArgs e)
     {
         string correo = txtCorreo.Text;
         string contrasena = txtPassword.Text;
@@ -65,11 +64,16 @@ public partial class vLogin : ContentPage
         if (result.Authenticated)
         {
             await DisplayAlert("Éxito", "Autenticado correctamente", "OK");
-            await Navigation.PushAsync(new vInicio(db,"correo@ejemplo.com")); // puedes pasar el correo real si lo tienes
+            await Navigation.PushAsync(new vInicio(db, "correo@ejemplo.com")); // puedes pasar el correo real si lo tienes
         }
         else
         {
             await DisplayAlert("Error", "La autenticación ha fallado", "OK");
         }
     }
-  }
+
+    private async void btnAcerdaDe_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new vAbout());
+    }
+}
