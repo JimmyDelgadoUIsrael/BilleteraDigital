@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 
 <ContentPage
     x:Class="BilleteraDigital.Views.vLogin"
@@ -106,13 +107,111 @@
                         TextColor="Black"
                         VerticalOptions="Center" />
                 </Grid>
+=======
+    
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             x:Class="BilleteraDigital.Views.vLogin"
+             Title="Iniciar Sesión">
 
-                <Button
+ 
+<!--Grid general y pongo el banner de login-->
+        <Grid RowDefinitions=".3*,.7*">
+            <Image Aspect="AspectFill" Source="login.png"/>
+            <Grid BackgroundColor="#087A4B" Opacity=".6"/>
+            <!--aqui ingreso me image animada tengo 2 columnas la segunda columna la ocupo con skia, para imagenes animacion loty-->
+            <Grid ColumnDefinitions="*,*">
+                <Image Aspect="AspectFit"
+                   HeightRequest="180"
+                   Source="logotipo.png"/>
+                <skia:SKLottieView Grid.Column="1"
+                               HeightRequest="160"
+                               RepeatCount="-1"
+                               Source="loginanimacion1.json"/>
+            </Grid>
+
+
+            <!--defino el rectangulo de fondo blanco-->
+            <Grid Grid.Row="1">
+                <RoundRectangle Margin="-5,-30,5,-2"
+                            CornerRadius="30,30,0,0"
+                            Fill="White"/>
+                <VerticalStackLayout Margin="30,0,30,0">
+                    <Label FontAttributes="Bold"
+                       FontSize="Medium"
+                       Text="Bienvenido!"
+                       TextColor="Black"/>
+                    <Label FontFamily="medium"
+                       Text="Ingresa tus credenciales"
+                       TextColor="Gray"/>
+                    <!--correo-->
+                    <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
+
+                        <RoundRectangle 
+                            BackgroundColor="#EDEBF6"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+
+                        <Image 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="40" 
+                            HeightRequest="40">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="AwesomeSolid"
+                                    Glyph="&#xf007;"
+                                    Size="40" 
+                                    Color="#087a4b"/>
+                            </Image.Source>
+                        </Image>
+
+                        <Entry Grid.Column="1"
+                               Placeholder="EMAIL"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                    <!--contaseña-->
+                    <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
+
+                        <RoundRectangle 
+                            BackgroundColor="#EDEBF6"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+
+                        <Image 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="40" 
+                            HeightRequest="40">
+                            <Image.Source>
+                                <FontImageSource
+                            FontFamily="AwesomeSolid"
+                            Glyph="&#xf084;"
+                            Size="40" 
+                            Color="#087a4b"/>
+                            </Image.Source>
+                        </Image>
+                        <Entry Grid.Column="1"
+                           Placeholder="PASSWORD"
+                           IsPassword="True"                      
+                           VerticalOptions="Center"/>
+                    </Grid>
+>>>>>>> Incorporación de login
+
+                    <Button
                     Margin="0,20,0,0"
                     BackgroundColor="#087a4b"
                     Clicked="btnIngresar_Clicked"
                     HeightRequest="60"
                     Text="Ingreso"
+<<<<<<< HEAD
                     TextColor="White" />
 
                 <Label
@@ -136,9 +235,40 @@
                     Text="Ingresar con Huella"
                     TextColor="White" />
 
+=======
+                    TextColor="White"/>
 
-            </VerticalStackLayout>
+                    <Button
+                    Margin="0,30,0,0"
+                    BackgroundColor="#FBF6FD"
+                    HeightRequest="60"
+                    Text="Crear una cuenta"
+                    TextColor="#087a4b"/>
+
+                    <Label Margin="0,20,0,-10"
+                       HorizontalOptions="Center"
+                       Text="Olvide mi contraseña"
+                       TextColor="Blue"
+                       TextDecorations="Underline"/>
+
+
+
+                    <Button
+                    Margin="0,30,0,0"
+                    BackgroundColor="Transparent"
+                    HeightRequest="50"
+                    Text="Acerca de"
+                    TextColor="Gray"
+                    x:Name="btnAcerdaDe"
+                    Clicked="btnAbout_Clicked"/>
+>>>>>>> Incorporación de login
+
+                </VerticalStackLayout>
+            </Grid>
         </Grid>
+<<<<<<< HEAD
     </Grid>
+=======
+>>>>>>> Incorporación de login
 
 </ContentPage>
