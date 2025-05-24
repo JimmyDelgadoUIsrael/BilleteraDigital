@@ -1,5 +1,4 @@
-﻿
-using BilleteraDigital.Configuraciones;
+﻿using BilleteraDigital.Configuraciones;
 using BilleteraDigital.Utilitario;
 
 namespace BilleteraDigital.Views;
@@ -7,7 +6,10 @@ namespace BilleteraDigital.Views;
 public partial class vInicio : ContentPage
 {
     private readonly DatabaseService _db;
-    public vInicio(DatabaseService db, String correo)
+    private List<Modelo.Transaccion> _transacciones = new();
+    private List<Modelo.Transaccion> _transaccionesFiltradas = new();
+
+    public vInicio(DatabaseService db, string correo)
     {
         InitializeComponent();
         _db = db;
@@ -18,85 +20,91 @@ public partial class vInicio : ContentPage
     {
         base.OnAppearing();
         await CargarTransaccionesAsync();
-
-        string monedaGuardada = ConfiguracionUsuario.MonedaSeleccionada;
-        lblMoneda.Text = "Modena Selecionada: " + monedaGuardada;
-
+        lblMoneda.Text = $"Moneda Seleccionada: {ConfiguracionUsuario.MonedaSeleccionada}";
     }
+
     private async Task CargarTransaccionesAsync()
     {
         if (_db == null)
         {
-            await DisplayAlert("Error", "No se pudo cargar la base de datos. El servicio no está disponible.", "Aceptar");
+            await MostrarMensaje("Error", "No se pudo cargar la base de datos.");
             return;
         }
 
-        var lista = await _db.ObtenerTransaccionesAsync();
+        _transacciones = await _db.ObtenerTransaccionesAsync() ?? new();
+        _transaccionesFiltradas = new(_transacciones);
 
-        if (lista == null)
-        {
-            await DisplayAlert("Advertencia", "No se pudieron cargar las transacciones.", "Aceptar");
-            return;
-        }
-
-        TransaccionesView.ItemsSource = lista;
-
-        decimal totalIngreso = lista.Where(t => t.tipo == "Ingreso").Sum(t => t.monto);
-        decimal totalGasto = lista.Where(t => t.tipo == "Gasto").Sum(t => t.monto);
-        decimal total = totalIngreso - totalGasto;
-
-        lblTotalIngresos.Text = $"Total Ingresos: {totalIngreso:C}";
-        lblTotalGastos.Text = $"Total Gastos: {totalGasto:C}";
-        lblTotal.Text = $"Total: {total:C}";
-
-        if (total <= 0)
-        {
-            DisplayAlert(Title, "No tienes dinero disponible", "Aceptar");
-        }
+        TransaccionesView.ItemsSource = _transaccionesFiltradas;
+        ActualizarTotales(_transaccionesFiltradas);
     }
-    private async void btnNuevo_Clicked(object sender, EventArgs e)
+
+    private void ActualizarTotales(IEnumerable<Modelo.Transaccion> lista)
     {
-        var formulario = new FormularioRegistro(_db);
-        await Navigation.PushModalAsync(new FormularioRegistro(_db));
+        decimal ingresos = lista.Where(t => t.tipo == "Ingreso").Sum(t => t.monto);
+        decimal gastos = lista.Where(t => t.tipo == "Gasto").Sum(t => t.monto);
+        decimal total = ingresos - gastos;
+
+        lblTotalIngresos.Text = $"Total Ingresos: {ingresos:C}";
+        lblTotalGastos.Text = $"Total Gastos: {gastos:C}";
+        lblTotal.Text = $"Total: {total:C}";
     }
+
+    private async Task MostrarMensaje(string titulo, string mensaje) =>
+        await DisplayAlert(titulo, mensaje, "Aceptar");
+
+    private async Task NavegarAsync(Page pagina) =>
+        await Navigation.PushAsync(pagina);
+
+    private async void btnNuevo_Clicked(object sender, EventArgs e) =>
+        await Navigation.PushModalAsync(new FormularioRegistro(_db));
 
     private async void btnEditar_Clicked(object sender, EventArgs e)
     {
-        var transaccion = (sender as Button)?.CommandParameter as Modelo.Transaccion;
-        if (transaccion != null)
-        {
-            var formulario = new FormularioRegistro(_db, transaccion); // Sobrecarga con edici�n
-            await Navigation.PushModalAsync(formulario);
-        }
-
+        if ((sender as Button)?.CommandParameter is Modelo.Transaccion transaccion)
+            await Navigation.PushModalAsync(new FormularioRegistro(_db, transaccion));
     }
 
     private async void btnEliminar_Clicked(object sender, EventArgs e)
     {
-        var transaccion = (sender as Button)?.CommandParameter as Modelo.Transaccion;
-        if (transaccion != null)
+        if ((sender as Button)?.CommandParameter is not Modelo.Transaccion transaccion) return;
+
+        if (await DisplayAlert("Confirmar", "¿Eliminar esta transacción?", "Sí", "No"))
         {
-            var confirm = await DisplayAlert("Confirmar", "Eliminar esta transacciín?", "Sí", "No");
-            if (confirm)
-            {
-                await _db.EliminarTransaccionAsync(transaccion);
-                await CargarTransaccionesAsync();
-            }
+            await _db.EliminarTransaccionAsync(transaccion);
+            await CargarTransaccionesAsync();
         }
     }
 
-    private void btnNoticia_Clicked(object sender, EventArgs e)
-    {
-        Navigation.PushAsync(new NoticiasView());
-    }
+    private async void btnConfig_Clicked(object sender, EventArgs e) =>
+        await NavegarAsync(new vConfig(_db, new CurrencyService()));
 
-    private async void btnConfig_Clicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new vConfig(_db, new CurrencyService()));
-    }
-
-    private void btnExport_Clicked(object sender, EventArgs e)
-    {
+    private void btnExport_Clicked(object sender, EventArgs e) =>
         Navigation.PushAsync(new vReporte(_db));
+
+    private void btnNoticia_Clicked(object sender, EventArgs e) =>
+        Navigation.PushAsync(new NoticiasView());
+
+    private void OnBuscarTexto(object sender, TextChangedEventArgs e) =>
+        FiltrarTransacciones();
+
+    private void OnFiltroSeleccionado(object sender, EventArgs e) =>
+        FiltrarTransacciones();
+
+    private void FiltrarTransacciones()
+    {
+        string texto = BuscarTexto.Text?.ToLower() ?? "";
+        string tipo = pickerFiltro.SelectedItem?.ToString();
+
+        var resultado = _transacciones.AsEnumerable();
+
+        if (!string.IsNullOrWhiteSpace(tipo) && tipo != "Todos")
+            resultado = resultado.Where(t => t.tipo.Equals(tipo, StringComparison.OrdinalIgnoreCase));
+
+        if (!string.IsNullOrWhiteSpace(texto))
+            resultado = resultado.Where(t => t.descripcion.ToLower().Contains(texto));
+
+        _transaccionesFiltradas = resultado.ToList();
+        TransaccionesView.ItemsSource = _transaccionesFiltradas;
+        ActualizarTotales(_transaccionesFiltradas);
     }
 }

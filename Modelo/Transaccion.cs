@@ -13,5 +13,6 @@ namespace BilleteraDigital.Modelo
         public string moneda { get; set; } = "USD"; // Moneda por defecto
         [Ignore]
         public string montoMoneda => $"{monto:C} {moneda}";
+        public int idUsuario { get; set; } // ID del usuario al que pertenece la transacción
     }
 }
