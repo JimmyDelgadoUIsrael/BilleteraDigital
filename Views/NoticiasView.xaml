@@ -5,14 +5,33 @@
              x:Class="BilleteraDigital.Views.NoticiasView"
              Title="Noticias de Negocios">
 
-    <Grid RowDefinitions="Auto, *" RowSpacing="10" Margin="10">
+    <Grid RowDefinitions="Auto, Auto, *" RowSpacing="10" Margin="10">
+        <!-- Fila 0: Selector de categoría -->
+        <Picker x:Name="CategoriaPicker"
+                Title="Selecciona una categoría"
+                SelectedIndexChanged="OnCategoriaChanged"
+                SelectedIndex="0"
+                Grid.Row="0">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Economía</x:String>
+                    <x:String>Negocios</x:String>
+                    <x:String>Tecnología</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <!-- Fila 1: Total de noticias -->
         <Label Text="{Binding TotalResults, StringFormat='Total de noticias: {0}'}"
                FontSize="Medium"
                FontAttributes="Bold"
                HorizontalOptions="Center"
-               Grid.Row="0"/>
+               Grid.Row="1"/>
 
-        <CollectionView ItemsSource="{Binding Articles}" Grid.Row="1" SelectionMode="None">
+        <!-- Fila 2: Lista de noticias -->
+        <CollectionView ItemsSource="{Binding Articles}"
+                        Grid.Row="2"
+                        SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="modelo:Article">
                     <Border Margin="0,5,0,5" Padding="10"
@@ -24,24 +43,19 @@
                               RowSpacing="5"
                               ColumnSpacing="10">
 
+                            <!-- Labels e imagen como antes -->
                             <Label Text="Fuente:" FontAttributes="Bold" Grid.Row="0" Grid.Column="0"/>
                             <Label Text="{Binding Source.Name}" FontAttributes="Italic" Grid.Row="0" Grid.Column="1" VerticalOptions="Center"/>
-
                             <Label Text="Autor(es):" FontAttributes="Bold" Grid.Row="1" Grid.Column="0"/>
                             <Label Text="{Binding Author}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center"/>
-
                             <Label Text="Título:" FontAttributes="Bold" Grid.Row="2" Grid.Column="0"/>
                             <Label Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" Grid.Row="2" Grid.Column="1"/>
-
                             <Label Text="Descripción:" FontAttributes="Bold" Grid.Row="3" Grid.Column="0"/>
                             <Label Text="{Binding Description}" Grid.Row="3" Grid.Column="1" LineBreakMode="WordWrap"/>
-
                             <Label Text="Publicado:" FontAttributes="Bold" Grid.Row="4" Grid.Column="0"/>
                             <Label Text="{Binding PublishedAt, StringFormat='{0:dd/MM/yyyy HH:mm}'}" Grid.Row="4" Grid.Column="1" VerticalOptions="Center"/>
-
                             <Label Text="Contenido:" FontAttributes="Bold" Grid.Row="5" Grid.Column="0"/>
                             <Label Text="{Binding Content}" Grid.Row="5" Grid.Column="1" LineBreakMode="WordWrap"/>
-
                             <Label Text="URL:" FontAttributes="Bold" Grid.Row="6" Grid.Column="0"/>
                             <Button Text="Ver Artículo Completo"
                                     BackgroundColor="{AppThemeBinding Light=LightBlue, Dark=DarkCyan}"
@@ -50,7 +64,6 @@
                                     FontSize="Small"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=OpenUrlCommand}" CommandParameter="{Binding Url}"
                                     Grid.Row="6" Grid.Column="1"/>
-
                             <Image Source="{Binding UrlToImage}"
                                    Aspect="AspectFill"
                                    HeightRequest="150"
