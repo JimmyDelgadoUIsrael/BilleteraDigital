@@ -3,42 +3,72 @@
     x:Class="BilleteraDigital.Views.vReporte"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:charts="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
     Title="vReporte">
-    <VerticalStackLayout
-        Padding="30"
-        Spacing="20"
-        VerticalOptions="Center">
+    <!--  xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"  -->
 
-        <Label
-            FontAttributes="Bold"
-            FontSize="28"
-            HorizontalOptions="Center"
-            Text="Billetera Digital"
-            TextColor="#333" />
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="20"
+            VerticalOptions="Center">
 
-        <Image
-            HeightRequest="150"
-            HorizontalOptions="Center"
-            Source="logotipo.png"
-            WidthRequest="150" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="28"
+                HorizontalOptions="Center"
+                Text="Billetera Digital"
+                TextColor="#333" />
 
-        <Button
-            x:Name="btnExporteExcel"
-            Margin="0,20,0,0"
-            BackgroundColor="#087a4b"
-            Clicked="btnExporteExcel_Clicked"
-            HeightRequest="60"
-            Text="📊 Exportar en Excel"
-            TextColor="White" />
+            <Image
+                HeightRequest="150"
+                HorizontalOptions="Center"
+                Source="logotipo.png"
+                WidthRequest="150" />
 
-        <Button
-            x:Name="btnExportePdf"
-            Margin="0,20,0,0"
-            BackgroundColor="#B00020"
-            Clicked="btnExportePdf_Clicked"
-            HeightRequest="60"
-            Text="🧾 Exportar en PDF"
-            TextColor="White" />
+            <charts:SfCircularChart x:Name="TransaccionesChart" HeightRequest="300">
+                <charts:SfCircularChart.Legend>
+                    <charts:ChartLegend Placement="Bottom" />
+                </charts:SfCircularChart.Legend>
 
-    </VerticalStackLayout>
+                <charts:SfCircularChart.Series>
+                    <charts:PieSeries
+                        EnableAnimation="True"
+                        ItemsSource="{Binding TransaccionesResumen}"
+                        ShowDataLabels="True"
+                        XBindingPath="Tipo"
+                        YBindingPath="Monto">
+                        <charts:PieSeries.DataLabelSettings>
+                            <charts:CircularDataLabelSettings LabelPlacement="Outer">
+                                <charts:CircularDataLabelSettings.LabelStyle>
+                                    <charts:ChartDataLabelStyle LabelFormat="#.##'$" />
+                                </charts:CircularDataLabelSettings.LabelStyle>
+                            </charts:CircularDataLabelSettings>
+                        </charts:PieSeries.DataLabelSettings>
+                    </charts:PieSeries>
+                </charts:SfCircularChart.Series>
+            </charts:SfCircularChart>
+
+
+            <Button
+                x:Name="btnExporteExcel"
+                Margin="0,20,0,0"
+                BackgroundColor="#087a4b"
+                Clicked="btnExporteExcel_Clicked"
+                HeightRequest="60"
+                Text="📊 Exportar en Excel"
+                TextColor="White" />
+
+            <Button
+                x:Name="btnExportePdf"
+                Margin="0,20,0,0"
+                BackgroundColor="#B00020"
+                Clicked="btnExportePdf_Clicked"
+                HeightRequest="60"
+                Text="🧾 Exportar en PDF"
+                TextColor="White" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
