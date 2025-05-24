@@ -44,25 +44,27 @@
                     <Label x:Name="lblMoneda" Text="" />
 
                     <!--  Ingresos y gastos  -->
-                    <HorizontalStackLayout Spacing="20">
-                        <Label
-                            x:Name="lblTotalIngresos"
-                            FontAttributes="Bold"
-                            Text="💰 Ingresos: $0.00"
-                            TextColor="#388E3C" />
+                    <ScrollView Orientation="Horizontal">
+                        <HorizontalStackLayout Spacing="20">
+                            <Label
+                                x:Name="lblTotalIngresos"
+                                FontAttributes="Bold"
+                                Text="💰 Ingresos: $0.00"
+                                TextColor="#388E3C" />
 
-                        <Label
-                            x:Name="lblTotalGastos"
-                            FontAttributes="Bold"
-                            Text="💸 Gastos: $0.00"
-                            TextColor="#D32F2F" />
+                            <Label
+                                x:Name="lblTotalGastos"
+                                FontAttributes="Bold"
+                                Text="💸 Gastos: $0.00"
+                                TextColor="#D32F2F" />
 
-                        <Label
-                            x:Name="lblTotal"
-                            FontAttributes="Bold"
-                            Text=" Total: $0.00"
-                            TextColor="Black" />
-                    </HorizontalStackLayout>
+                            <Label
+                                x:Name="lblTotal"
+                                FontAttributes="Bold"
+                                Text=" Total: $0.00"
+                                TextColor="Black" />
+                        </HorizontalStackLayout>
+                    </ScrollView>
                 </VerticalStackLayout>
             </Border>
             <Button

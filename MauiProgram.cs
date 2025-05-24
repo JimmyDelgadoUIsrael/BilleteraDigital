@@ -31,6 +31,7 @@ namespace BilleteraDigital
             builder.Services.AddTransient<Views.vInicio>();
 
 
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

@@ -103,6 +103,7 @@
                         Grid.Column="1"
                         IsPassword="True"
                         Placeholder="PASSWORD"
+                        TextColor="Black"
                         VerticalOptions="Center" />
                 </Grid>
 
