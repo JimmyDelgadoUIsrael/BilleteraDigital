@@ -2,6 +2,7 @@ using BilleteraDigital.Modelo;
 using BilleteraDigital.Utilitario;
 using SQLite;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace BilleteraDigital.Views;
 
@@ -21,14 +22,21 @@ public partial class vRegistroUser : ContentPage
 		{
 			Correo = txtCorreo.Text.Trim(),
 			Contrasena = txtPassword.Text,
+
+
 		};
 
 		if (String.IsNullOrEmpty(nuevoUsuario.Correo) || string.IsNullOrEmpty(nuevoUsuario.Contrasena))
 		{
-			await DisplayAlert("Error", "Correo y contrase requeridos", "OK");
+			await DisplayAlert("Error", "Correo y contraseña requeridos", "OK");
 			return;
 		}
 
+		if (!EscorreoValido(nuevoUsuario.Correo))
+		{
+			await DisplayAlert("Error", "Por favor ingresa un correo valido", "OK");
+			return;
+		}
 		try
 		{
 			await _database.InsertAsync(nuevoUsuario);
@@ -47,5 +55,20 @@ public partial class vRegistroUser : ContentPage
 		await Navigation.PushAsync(new vLogin());
     }
 
- 
+	private bool EscorreoValido(string correo)
+	{
+		if (string.IsNullOrWhiteSpace(correo))
+			return false;
+
+		try
+		{
+			var regex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+			return regex.IsMatch(correo);
+		}
+		catch
+		{
+			return false;
+		}
+	}
+
 }

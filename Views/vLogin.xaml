@@ -111,32 +111,34 @@
                     Text="Ingreso"
                     TextColor="White" />
 
-                <!--  Enlaces adicionales  -->
-                <Label
-                    Margin="0,20,0,-10"
-                    HorizontalOptions="Center"
-                    Text="Olvide mi contraseña"
-                    TextColor="Blue"
-                    TextDecorations="Underline" />
+                <Label Margin="0,20,0,-10"
+                       HorizontalOptions="Center"
+                       Text="Olvide mi contraseña"
+                       TextColor="Blue"
+                       TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnOlvideContraseñaTapped"/>
+                    </Label.GestureRecognizers>
 
-                <!--  Crear cuenta  -->
+                </Label>
                 <Button
                     Margin="0,30,0,0"
                     BackgroundColor="Gray"
                     HeightRequest="60"
                     Text="Crear una cuenta"
-                    TextColor="#087a4b" />
+                    TextColor="#087a4b"
+                    Clicked="OnCrearCuentaClicked"/>
 
-                <!--  Acerca de  -->
-                <Button
-                    x:Name="btnAcerdaDe"
-                    Margin="0,20,0,0"
-                    BackgroundColor="Gray"
-                    Clicked="btnAcerdaDe_Clicked"
-                    HeightRequest="50"
-                    Text="Acerca de"
-                    TextColor="#087a4b" />
-            </VerticalStackLayout>
+                <Button Text="Ingresar con Huella"
+                     Clicked="OnHuellaClicked"
+                      BackgroundColor="#087A4B"
+                      TextColor="White"
+                        Margin="0,20,0,0"/>
+                 
+                    
+
+                </VerticalStackLayout>
+            </Grid>
         </Grid>
-    </Grid>
+
 </ContentPage>
