@@ -58,20 +58,19 @@
                                 Text="💸 Gastos: $0.00"
                                 TextColor="#D32F2F" />
 
-                            <Label
-                                x:Name="lblTotal"
-                                FontAttributes="Bold"
-                                Text=" Total: $0.00"
-                                TextColor="Black" />
-                        </HorizontalStackLayout>
-                    </ScrollView>
-                </VerticalStackLayout>
-            </Border>
-            <Button
-                x:Name="btnNuevo"
-                Clicked="btnNuevo_Clicked"
-                Text="➕ Nuevo" />
+            <!-- Barra de búsqueda -->
+            <SearchBar x:Name="BuscarTexto" Placeholder="Buscar..." TextChanged="OnBuscarTexto" />
 
+            <!-- Filtro por tipo -->
+            <Picker x:Name="pickerFiltro" Title="Filtrar por tipo" SelectedIndexChanged="OnFiltroSeleccionado">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Todos</x:String>
+                        <x:String>Ingreso</x:String>
+                        <x:String>Gasto</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
             <Button
                 x:Name="btnExport"
