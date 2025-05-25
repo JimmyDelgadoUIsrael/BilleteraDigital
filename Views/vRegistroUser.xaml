@@ -68,20 +68,20 @@
                             HorizontalOptions="Center"
                             VerticalOptions="Center"/>
                                         <Image HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           WidthRequest="40"
-                           HeightRequest="40">
+                                       VerticalOptions="Center"
+                                       WidthRequest="40"
+                                       HeightRequest="40">
                                     <Image.Source>
                                                 <FontImageSource
-                                FontFamily="AwesomeSolid"
-                                Glyph="&#xf0e0;"
-                                Size="40"
-                                Color="#087a4b"/>
+                                                    FontFamily="AwesomeSolid"
+                                                    Glyph="&#xf007;"
+                                                    Size="40"
+                                                    Color="#087a4b"/>
                                             </Image.Source>
                                         </Image>
                                         <Entry x:Name="txtNombreUsuario"
                            Grid.Column="1"
-                           Placeholder="Ingresa un Usuario"
+                           Placeholder="INGRESA UN USUARIO"
                            
                             VerticalOptions="Center" TextColor="Black"/>
                          </Grid>
