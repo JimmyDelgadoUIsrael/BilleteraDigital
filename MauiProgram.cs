@@ -25,6 +25,7 @@ namespace BilleteraDigital
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("FontAwesomeSolid.otf", "AwesomeSolid");
+                    fonts.AddFont("Font Awesome 6 Free-Solid-900.ttf", "AwesomeSolid");
                 });
             builder.Services.AddSingleton<Utilitario.DatabaseService>();
             builder.Services.AddTransient<Views.FormularioRegistro>();

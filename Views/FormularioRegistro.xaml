@@ -26,7 +26,7 @@
                         Radius="8"
                         Offset="5,5" />
                 </Border.Shadow>
-                <Picker x:Name="TipoPicker">
+                <Picker x:Name="TipoPicker" TextColor="Black">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Ingreso</x:String>
@@ -53,7 +53,10 @@
                         Radius="8"
                         Offset="5,5" />
                 </Border.Shadow>
-                <Entry x:Name="DescripcionEntry" Placeholder="Ej. Sueldo, comida..." />
+                <Entry
+                    x:Name="DescripcionEntry"
+                    Placeholder="Ej. Sueldo, comida..."
+                    TextColor="Black" />
             </Border>
 
             <Label
@@ -76,7 +79,8 @@
                 <Entry
                     x:Name="MontoEntry"
                     Keyboard="Numeric"
-                    Placeholder="{x:Static config:ConfiguracionUsuario.MonedaSeleccionada}" />
+                    Placeholder="{x:Static config:ConfiguracionUsuario.MonedaSeleccionada}"
+                    TextColor="Black" />
 
 
             </Border>

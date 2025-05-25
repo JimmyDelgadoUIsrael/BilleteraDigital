@@ -13,9 +13,23 @@ public partial class vInicio : ContentPage
     {
         InitializeComponent();
         _db = db;
-        lblUsuario.Text = correo.ToUpper();
+        CargarNombreUsuario(correo);
     }
 
+
+
+    private async void CargarNombreUsuario(string correo)
+    {
+        var user = await _db.ObtenerUsuarioPorCorreoAsync(correo);
+        if (user != null)
+        {
+            lblUsuario.Text = user.NombreUsuario.ToUpper();
+        }
+        else
+        {
+            lblUsuario.Text = correo.ToUpper();
+        }
+    }
     protected override async void OnAppearing()
     {
         base.OnAppearing();

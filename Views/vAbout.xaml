@@ -16,10 +16,11 @@
                 FontSize="28"
                 HorizontalOptions="Center"
                 Text="Billetera Digital"
-                TextColor="#333" />
+                TextColor="Green" />
 
 
             <Image
+                BackgroundColor="Black"
                 HeightRequest="150"
                 HorizontalOptions="Center"
                 Source="logotipo.png"
@@ -30,28 +31,28 @@
                 FontSize="18"
                 HorizontalOptions="Center"
                 Text="Desarrollado por:"
-                TextColor="#555" />
+                TextColor="Black" />
 
             <Label
                 FontSize="16"
                 HorizontalOptions="Center"
                 Text="Jimmy Delgado"
-                TextColor="#555" />
+                TextColor="Black" />
             <Label
                 FontSize="16"
                 HorizontalOptions="Center"
                 Text="Byron Gullasamin"
-                TextColor="#555" />
+                TextColor="Black" />
             <Label
                 FontSize="16"
                 HorizontalOptions="Center"
                 Text="Jonnathan Chicaiza "
-                TextColor="#555" />
+                TextColor="Black" />
             <Label
                 FontSize="16"
                 HorizontalOptions="Center"
                 Text="Jonathan Gualpa"
-                TextColor="#555" />
+                TextColor="Black" />
 
             <Label
                 Margin="0,10,0,0"

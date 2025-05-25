@@ -1,10 +1,7 @@
-using BilleteraDigital.Modelo;
 using BilleteraDigital.Utilitario;
 using BilleteraDigital.ViewModelo;
-using Plugin.Fingerprint.Abstractions;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
-using System.Threading.Tasks;
 
 
 
@@ -25,17 +22,14 @@ public partial class vLogin : ContentPage
     {
         string correo = txtCorreo.Text;
         string contrasena = txtPassword.Text;
-
-        bool valido = await _viewModel.IniciarSesionAsync(correo, contrasena);
-        Preferences.Set("UsuarioCorreo", correo);
-
-        if (valido)
+        var usuario = await _viewModel.IniciarSesionAsync(correo, contrasena);
+        if (usuario != null)
         {
-            Preferences.Set("UsuarioCorreo",correo);
+            Preferences.Set("UsuarioCorreo", usuario.Correo);
+            Preferences.Set("NombreUsuario", usuario.NombreUsuario);
             await DisplayAlert("Exito", "Inicio de sesion exitoso", "OK");
-
+            await DisplayAlert("Exito", $"Bienvenido \n{usuario.NombreUsuario}", "OK");
             var db = App.Services.GetService<DatabaseService>();
-
             await Navigation.PushAsync(new vInicio(db, correo));
         }
         else
@@ -43,8 +37,8 @@ public partial class vLogin : ContentPage
             await DisplayAlert("Error", "Credenciales incorrectas", "OK");
         }
 
-
     }
+
 
     private async void OnCrearCuentaClicked(object sender, EventArgs e)
     {
@@ -67,7 +61,7 @@ public partial class vLogin : ContentPage
         }
 
         var result = await CrossFingerprint.Current.AuthenticateAsync(
-            new AuthenticationRequestConfiguration("Autenticación requerida", "Escanea tu huella"));
+            new AuthenticationRequestConfiguration("Autenticación requerida ", "Escanea tu huella"));
 
         if (result.Authenticated)
         {
@@ -93,5 +87,10 @@ public partial class vLogin : ContentPage
     private async void OnOlvideContraseñaTapped(object sender, TappedEventArgs e)
     {
         await Navigation.PushAsync(new vRestablecerContrasena());
+    }
+
+    private async void btnAcerca_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new vAbout());
     }
 }

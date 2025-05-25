@@ -131,4 +131,16 @@
 	  <MauiImage Include="Platforms\Android\Resources\drawable\logo1.png" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiFont Update="Resources\Fonts\fa-solid-900.ttf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\Font Awesome 6 Free-Solid-900.otf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </MauiFont>
+	  <MauiFont Update="Resources\Fonts\FontAwesomeSolid.otf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </MauiFont>
+	</ItemGroup>
+
 </Project>

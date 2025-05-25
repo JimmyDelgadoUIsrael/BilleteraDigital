@@ -48,21 +48,38 @@
                     <Image
                         HeightRequest="40"
                         HorizontalOptions="Center"
+                        Source="email.png"
                         VerticalOptions="Center"
-                        WidthRequest="40">
-                        <Image.Source>
-                            <FontImageSource
-                                FontFamily="AwesomeSolid"
-                                Glyph="&#xf0e0;"
-                                Size="40"
-                                Color="#087a4b" />
-                        </Image.Source>
-                    </Image>
+                        WidthRequest="40" />
                     <Entry
                         x:Name="txtCorreo"
                         Grid.Column="1"
                         Keyboard="Email"
-                        Placeholder="EMAIL"
+                        Placeholder="INGRESA UN EMAIL"
+                        PlaceholderColor="Black"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                </Grid>
+                <!--  aqui va el usuario  -->
+                <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
+                    <RoundRectangle
+                        BackgroundColor="#EDEBF6"
+                        CornerRadius="10"
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="60" />
+                    <Image
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        Source="user.png"
+                        VerticalOptions="Center"
+                        WidthRequest="40" />
+                    <Entry
+                        x:Name="txtNombreUsuario"
+                        Grid.Column="1"
+                        Placeholder="INGRESA UN USUARIO"
+                        PlaceholderColor="Black"
                         TextColor="Black"
                         VerticalOptions="Center" />
                 </Grid>
@@ -79,21 +96,15 @@
                     <Image
                         HeightRequest="40"
                         HorizontalOptions="Center"
+                        Source="lock.png"
                         VerticalOptions="Center"
-                        WidthRequest="40">
-                        <Image.Source>
-                            <FontImageSource
-                                FontFamily="AwesomeSolid"
-                                Glyph="&#xf084;"
-                                Size="40"
-                                Color="#087a4b" />
-                        </Image.Source>
-                    </Image>
+                        WidthRequest="40" />
                     <Entry
                         x:Name="txtPassword"
                         Grid.Column="1"
                         IsPassword="True"
                         Placeholder="CONTRASEÑA"
+                        PlaceholderColor="Black"
                         TextColor="Black"
                         VerticalOptions="Center" />
                 </Grid>
@@ -107,13 +118,13 @@
                     TextColor="White" />
 
                 <Button
-                        Margin="0,30,0,0"
-                        BackgroundColor="#FBF6FD"
-                        HeightRequest="60"
-                        Text="Ya tengo una cuenta"
-                        TextColor="#087a4b"
-                        Clicked="OnAtras"/>
-                    
+                    Margin="0,30,0,0"
+                    BackgroundColor="#FBF6FD"
+                    Clicked="OnAtras"
+                    HeightRequest="60"
+                    Text="Ya tengo una cuenta"
+                    TextColor="#087a4b" />
+
             </VerticalStackLayout>
         </Grid>
     </Grid>

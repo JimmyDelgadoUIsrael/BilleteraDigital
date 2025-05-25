@@ -12,6 +12,7 @@
             Text="Billetera Digital"
             TextColor="#333" />
         <Image
+            BackgroundColor="Black"
             HeightRequest="150"
             HorizontalOptions="Center"
             Source="logotipo.png"

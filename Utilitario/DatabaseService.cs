@@ -33,6 +33,11 @@ namespace BilleteraDigital.Utilitario
             else
                 return await _db.InsertAsync(t);
         }
-
+        public async Task<Usuario> ObtenerUsuarioPorCorreoAsync(string correo)
+        {
+            var connection = new SQLiteAsyncConnection(Constante.DatabasePath, Constante.Flags);
+            await connection.CreateTableAsync<Usuario>();
+            return await connection.Table<Usuario>().Where(u => u.Correo == correo).FirstOrDefaultAsync();
+        }
     }
 }

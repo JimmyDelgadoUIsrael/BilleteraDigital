@@ -16,7 +16,11 @@
             <Image
                 Aspect="AspectFit"
                 HeightRequest="180"
-                Source="logotipo.png" />
+                Source="logotipo.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="btnAcerca_Clicked" />
+                </Image.GestureRecognizers>
+            </Image>
             <skia:SKLottieView
                 Grid.Column="1"
                 HeightRequest="160"
@@ -53,22 +57,15 @@
                     <Image
                         HeightRequest="40"
                         HorizontalOptions="Center"
+                        Source="user.png"
                         VerticalOptions="Center"
-                        WidthRequest="40">
-                        <Image.Source>
-                            <FontImageSource
-                                FontFamily="AwesomeSolid"
-                                Glyph="&#xf007;"
-                                Size="40"
-                                Color="#087a4b" />
-                        </Image.Source>
-                    </Image>
+                        WidthRequest="40" />
                     <Entry
                         x:Name="txtCorreo"
                         Grid.Column="1"
                         Placeholder="EMAIL"
                         TextColor="Black"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center"  PlaceholderColor="Black"/>
                 </Grid>
 
                 <!--  Contraseña  -->
@@ -83,23 +80,16 @@
                     <Image
                         HeightRequest="40"
                         HorizontalOptions="Center"
+                        Source="lock.png"
                         VerticalOptions="Center"
-                        WidthRequest="40">
-                        <Image.Source>
-                            <FontImageSource
-                                FontFamily="AwesomeSolid"
-                                Glyph="&#xf084;"
-                                Size="40"
-                                Color="#087a4b" />
-                        </Image.Source>
-                    </Image>
+                        WidthRequest="40" />
                     <Entry
                         x:Name="txtPassword"
                         Grid.Column="1"
                         IsPassword="True"
                         Placeholder="PASSWORD"
                         TextColor="Black"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center"  PlaceholderColor="Black"/>
                 </Grid>
 
                 <!--  Botón de ingreso  -->
@@ -107,38 +97,46 @@
                     Margin="0,20,0,0"
                     BackgroundColor="#087a4b"
                     Clicked="btnIngresar_Clicked"
-                    HeightRequest="60"
+                    CornerRadius="10"
+                    HeightRequest="55"
                     Text="Ingreso"
                     TextColor="White" />
 
-                <Label Margin="0,20,0,-10"
-                       HorizontalOptions="Center"
-                       Text="Olvide mi contraseña"
-                       TextColor="Blue"
-                       TextDecorations="Underline">
+                <Label
+                    Margin="0,20,0,-10"
+                    HorizontalOptions="Center"
+                    Text="Olvide mi contraseña"
+                    TextColor="Blue"
+                    TextDecorations="Underline">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnOlvideContraseñaTapped"/>
+                        <TapGestureRecognizer Tapped="OnOlvideContraseñaTapped" />
                     </Label.GestureRecognizers>
 
                 </Label>
                 <Button
                     Margin="0,30,0,0"
                     BackgroundColor="Gray"
-                    HeightRequest="60"
+                    Clicked="OnCrearCuentaClicked"
+                    CornerRadius="10"
+                    HeightRequest="55"
                     Text="Crear una cuenta"
-                    TextColor="#087a4b"
-                    Clicked="OnCrearCuentaClicked"/>
+                    TextColor="#087a4b" />
 
-                <Button Text="Ingresar con Huella"
-                     Clicked="OnHuellaClicked"
-                      BackgroundColor="#087A4B"
-                      TextColor="White"
-                        Margin="0,20,0,0"/>
-                 
-                    
+                <Button
+                    Margin="0,20,0,0"
+                    BackgroundColor="#087A4B"
+                    Clicked="OnHuellaClicked"
+                    CornerRadius="10"
+                    HeightRequest="55"
+                    Text="Ingresar con Huella"
+                    TextColor="White" />
 
-                </VerticalStackLayout>
-            </Grid>
+
+
+
+
+            </VerticalStackLayout>
         </Grid>
+    </Grid>
 
 </ContentPage>
