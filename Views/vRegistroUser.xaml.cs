@@ -22,13 +22,16 @@ public partial class vRegistroUser : ContentPage
 		{
 			Correo = txtCorreo.Text.Trim(),
 			Contrasena = txtPassword.Text,
-
+			NombreUsuario = txtNombreUsuario.Text.Trim(),
 
 		};
 
-		if (String.IsNullOrEmpty(nuevoUsuario.Correo) || string.IsNullOrEmpty(nuevoUsuario.Contrasena))
-		{
-			await DisplayAlert("Error", "Correo y contraseña requeridos", "OK");
+		if (string.IsNullOrEmpty(nuevoUsuario.NombreUsuario) ||
+			string.IsNullOrEmpty(nuevoUsuario.Correo) ||
+			string.IsNullOrEmpty(nuevoUsuario.Contrasena))
+
+        {
+            await DisplayAlert("Error", "Correo y contraseña requeridos", "OK");
 			return;
 		}
 

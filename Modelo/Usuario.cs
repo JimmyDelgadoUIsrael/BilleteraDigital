@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BilleteraDigital.Modelo
 {
-    internal class Usuario
+    public class Usuario
     {
         [PrimaryKey, AutoIncrement]
 
@@ -16,6 +16,8 @@ namespace BilleteraDigital.Modelo
         [Unique, NotNull]
         public string Correo { get; set; } = string.Empty;
         public string Contrasena { get; set; } = string.Empty;
+
+        public string NombreUsuario {  get; set; } = string.Empty;
         
     }
 }

@@ -26,13 +26,18 @@ public partial class vLogin : ContentPage
         string correo = txtCorreo.Text;
         string contrasena = txtPassword.Text;
 
-        bool valido = await _viewModel.IniciarSesionAsync(correo, contrasena);
-        Preferences.Set("UsuarioCorreo", correo);
 
-        if (valido)
+        var usuario = await _viewModel.IniciarSesionAsync(correo, contrasena);
+
+        if (usuario != null)
         {
-            Preferences.Set("UsuarioCorreo",correo);
+            Preferences.Set("UsuarioCorreo",usuario.Correo);
+            Preferences.Set("NombreUsuario", usuario.NombreUsuario);
             await DisplayAlert("Exito", "Inicio de sesion exitoso", "OK");
+
+
+            await DisplayAlert("Exito", $"Bienvenido{usuario.NombreUsuario}", "OK");
+
 
             var db = App.Services.GetService<DatabaseService>();
 

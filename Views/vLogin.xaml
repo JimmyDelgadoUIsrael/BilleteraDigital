@@ -94,7 +94,8 @@
                            <Entry  x:Name="txtPassword" Grid.Column="1"
                            Placeholder="PASSWORD"
                            IsPassword="True"                      
-                           VerticalOptions="Center"/>
+                           VerticalOptions="Center"
+                                   TextColor="Black"/>
                     </Grid>
 
                 <Button

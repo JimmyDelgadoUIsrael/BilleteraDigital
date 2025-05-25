@@ -58,8 +58,34 @@
                            Keyboard="Email"
                            VerticalOptions="Center" TextColor="Black"/>
                     </Grid>
-
-                    <!-- Contraseña -->
+                    
+                    <!-- aqui va el usuario -->
+                            <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
+                            <RoundRectangle BackgroundColor="#EDEBF6"
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                                        <Image HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           WidthRequest="40"
+                           HeightRequest="40">
+                                    <Image.Source>
+                                                <FontImageSource
+                                FontFamily="AwesomeSolid"
+                                Glyph="&#xf0e0;"
+                                Size="40"
+                                Color="#087a4b"/>
+                                            </Image.Source>
+                                        </Image>
+                                        <Entry x:Name="txtNombreUsuario"
+                           Grid.Column="1"
+                           Placeholder="Ingresa un Usuario"
+                           
+                            VerticalOptions="Center" TextColor="Black"/>
+                         </Grid>
+                <!-- Contraseña -->
                     <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
                         <RoundRectangle BackgroundColor="#EDEBF6"
                                     CornerRadius="10"
