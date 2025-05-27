@@ -3,6 +3,8 @@ using BilleteraDigital.Modelo;
 using BilleteraDigital.Utilitario;
 namespace BilleteraDigital.Views;
 
+
+
 public partial class FormularioRegistro : ContentPage
 {
     private readonly DatabaseService _db;
@@ -26,8 +28,8 @@ public partial class FormularioRegistro : ContentPage
     private async void btnGuardar_Clicked(object sender, EventArgs e)
     {
         if (string.IsNullOrWhiteSpace(TipoPicker.SelectedItem?.ToString()) ||
-        string.IsNullOrWhiteSpace(MontoEntry.Text) ||
-        !decimal.TryParse(MontoEntry.Text, out decimal monto))
+            string.IsNullOrWhiteSpace(MontoEntry.Text) ||
+            !decimal.TryParse(MontoEntry.Text, out decimal monto))
         {
             await DisplayAlert("Error", "Complete todos los campos correctamente.", "OK");
             return;
@@ -35,12 +37,32 @@ public partial class FormularioRegistro : ContentPage
 
         try
         {
+            Ubicacion? ubic = null;
+
+            // Solo si es transacción nueva y el Check está marcado
+            if (_transaccionExistente == null && chkUbicacion.IsChecked)
+            {
+                var permiso = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                if (permiso == PermissionStatus.Granted)
+                {
+                    var pos = await Geolocation.GetLocationAsync(
+                                  new GeolocationRequest(GeolocationAccuracy.Medium));
+                    if (pos != null)
+                    {
+                        ubic = new Ubicacion
+                        {
+                            Latitud = pos.Latitude,
+                            Longitud = pos.Longitude
+                        };
+                    }
+                }
+            }
+
             if (_transaccionExistente != null)
             {
                 _transaccionExistente.tipo = TipoPicker.SelectedItem.ToString();
                 _transaccionExistente.descripcion = DescripcionEntry.Text;
                 _transaccionExistente.monto = monto;
-
 
                 await _db.ActualizarTransaccionAsync(_transaccionExistente);
             }
@@ -54,7 +76,8 @@ public partial class FormularioRegistro : ContentPage
                     fecha = DateTime.Now,
                     moneda = ConfiguracionUsuario.MonedaSeleccionada
                 };
-                await _db.AgregarTransaccionAsync(nueva);
+
+                await _db.GuardarTransaccionAsync(nueva, ubic); // con ubicación opcional
             }
 
             await Navigation.PopModalAsync();
@@ -64,6 +87,7 @@ public partial class FormularioRegistro : ContentPage
             await DisplayAlert("Error", $"Error al guardar: {ex.Message}", "OK");
         }
     }
+
 
     private async void btnCancelar_Clicked(object sender, EventArgs e)
     {

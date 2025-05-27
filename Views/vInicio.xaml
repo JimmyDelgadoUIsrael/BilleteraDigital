@@ -129,6 +129,10 @@
                                     FontSize="12"
                                     Text="{Binding fecha, StringFormat='Fecha: {0:dd/MM/yyyy}'}"
                                     TextColor="Gray" />
+                                <Label
+                                    FontSize="12"
+                                    Text="{Binding UbicacionTexto}"
+                                    TextColor="DarkSlateGray" />
 
                                 <HorizontalStackLayout HorizontalOptions="End" Spacing="10">
                                     <Button

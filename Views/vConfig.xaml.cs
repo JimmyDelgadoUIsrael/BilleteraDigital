@@ -18,7 +18,7 @@ public partial class vConfig : ContentPage
         _currencyService = currencyService;
 
         BindingContext = this;
-        // Cargar monedas al iniciar
+
         _ = CargarMonedasAsync();
     }
 
@@ -77,5 +77,26 @@ public partial class vConfig : ContentPage
         await DisplayAlert("Configuración", $"Moneda actualizada a {monedaSeleccionada}", "OK");
 
     }
+    private async void btnEliminarDatos_Clicked(object sender, EventArgs e)
+    {
+        bool confirmado = await DisplayAlert(
+            "Confirmar",
+            "¿Estás seguro de que deseas eliminar TODOS los datos?",
+            "Sí, eliminar",
+            "Cancelar");
 
+        if (!confirmado)
+            return;
+
+        try
+        {
+            await _db.EliminarTodoAsync();
+            await DisplayAlert("Éxito", "Todos los datos han sido eliminados.", "OK");
+            await Navigation.PushAsync(new vLogin());
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
+        }
+    }
 }
