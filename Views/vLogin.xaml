@@ -5,13 +5,10 @@
     xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Title="Iniciar Sesión">
 
-    <!--  Grid general para el diseño  -->
     <Grid RowDefinitions=".3*,.7*">
-        <!--  Imagen de fondo de login  -->
         <Image Aspect="AspectFill" Source="login.png" />
         <Grid BackgroundColor="#087A4B" Opacity=".6" />
 
-        <!--  Sección con logo y animación  -->
         <Grid ColumnDefinitions="*,*">
             <Image
                 Aspect="AspectFit"
@@ -28,7 +25,7 @@
                 Source="loginanimacion1.json" />
         </Grid>
 
-        <!--  Rectángulo de fondo blanco para el formulario  -->
+
         <Grid Grid.Row="1">
             <RoundRectangle
                 Margin="-5,-30,5,-2"
@@ -45,7 +42,7 @@
                     Text="Ingresa tus credenciales"
                     TextColor="Gray" />
 
-                <!--  Correo  -->
+
                 <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
                     <RoundRectangle
                         BackgroundColor="#EDEBF6"
@@ -64,11 +61,11 @@
                         x:Name="txtCorreo"
                         Grid.Column="1"
                         Placeholder="EMAIL"
+                        PlaceholderColor="Black"
                         TextColor="Black"
-                        VerticalOptions="Center"  PlaceholderColor="Black"/>
+                        VerticalOptions="Center" />
                 </Grid>
 
-                <!--  Contraseña  -->
                 <Grid Margin="0,30,0,0" ColumnDefinitions=".2*,.8*">
                     <RoundRectangle
                         BackgroundColor="#EDEBF6"
@@ -88,11 +85,11 @@
                         Grid.Column="1"
                         IsPassword="True"
                         Placeholder="PASSWORD"
+                        PlaceholderColor="Black"
                         TextColor="Black"
-                        VerticalOptions="Center"  PlaceholderColor="Black"/>
+                        VerticalOptions="Center" />
                 </Grid>
 
-                <!--  Botón de ingreso  -->
                 <Button
                     Margin="0,20,0,0"
                     BackgroundColor="#087a4b"
@@ -114,6 +111,7 @@
 
                 </Label>
                 <Button
+                    x:Name="btnCrearCuenta"
                     Margin="0,30,0,0"
                     BackgroundColor="Gray"
                     Clicked="OnCrearCuentaClicked"

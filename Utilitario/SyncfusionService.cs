@@ -14,16 +14,6 @@ namespace BilleteraDigital.Utilitario
         public async Task<string> ExportarTransaccionesAExcelAsync(List<Transaccion> transacciones)
         {
 
-            /*
-             
-            using var excelEngine = new ExcelEngine();
-            var application = excelEngine.Excel;
-            application.DefaultVersion = ExcelVersion.Excel2016;
-
-            var workbook = application.Workbooks.Create(1);
-            var worksheet = workbook.Worksheets[0];
-              worksheet.Name = "Transacciones";
-            */
             using ExcelEngine excelEngine = new();
             Syncfusion.XlsIO.IApplication application = excelEngine.Excel;
             application.DefaultVersion = ExcelVersion.Xlsx;
@@ -31,8 +21,6 @@ namespace BilleteraDigital.Utilitario
             IWorkbook workbook = application.Workbooks.Create(1);
             IWorksheet worksheet = workbook.Worksheets[0];
             worksheet.Name = "Transacciones";
-
-            // --- TITULO BILLETERA DIGITAL ---
             worksheet.Range["A1:F1"].Merge();
             worksheet.Range["A1"].Text = "BILLETERA DIGITAL";
             worksheet.Range["A1"].CellStyle.Font.Bold = true;
@@ -40,8 +28,6 @@ namespace BilleteraDigital.Utilitario
             worksheet.Range["A1"].CellStyle.HorizontalAlignment = ExcelHAlign.HAlignCenter;
             worksheet.Range["A1"].CellStyle.VerticalAlignment = ExcelVAlign.VAlignCenter;
             worksheet.SetRowHeight(1, 30);
-
-            // --- ENCABEZADOS (mover a fila 4 para dejar espacio para título y logo) ---
             worksheet.Range["A4"].Text = "ID";
             worksheet.Range["B4"].Text = "Tipo";
             worksheet.Range["C4"].Text = "Monto";
@@ -49,7 +35,7 @@ namespace BilleteraDigital.Utilitario
             worksheet.Range["E4"].Text = "Fecha";
             worksheet.Range["F4"].Text = "Moneda";
 
-            int fila = 5; // Datos empiezan en fila 5
+            int fila = 5;
             foreach (var t in transacciones)
             {
                 worksheet.Range[$"A{fila}"].Number = t.id;

@@ -17,6 +17,24 @@ public partial class vLogin : ContentPage
     {
         InitializeComponent();
     }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        VerificarUsuarios();
+        LimpiarCampos();
+    }
+
+    private void LimpiarCampos()
+    {
+        txtCorreo.Text = string.Empty;
+        txtPassword.Text = string.Empty;
+    }
+    private async void VerificarUsuarios()
+    {
+        db = App.Services.GetService<DatabaseService>();
+        var usuarios = await db.ObtenerUsuariosAsync();
+        btnCrearCuenta.IsVisible = usuarios == null || usuarios.Count == 0;
+    }
 
     private async void btnIngresar_Clicked(object sender, EventArgs e)
     {
@@ -71,7 +89,7 @@ public partial class vLogin : ContentPage
             {
                 var db = App.Services.GetService<DatabaseService>();
                 await DisplayAlert("Éxito", "Autenticado correctamente", "OK");
-                await Navigation.PushAsync(new vInicio(db, correoGuardado)); // puedes pasar el correo real si lo tienes
+                await Navigation.PushAsync(new vInicio(db, correoGuardado));
             }
             else
             {

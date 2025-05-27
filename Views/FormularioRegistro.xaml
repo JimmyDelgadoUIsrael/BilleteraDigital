@@ -85,6 +85,13 @@
 
             </Border>
 
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <CheckBox x:Name="chkUbicacion" Color="#087A4B" />
+                <Label
+                    FontSize="14"
+                    Text="📍 Guardar ubicación GPS"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
             <Button
                 BackgroundColor="#4CAF50"
                 Clicked="btnGuardar_Clicked"

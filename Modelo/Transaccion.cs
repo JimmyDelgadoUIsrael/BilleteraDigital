@@ -14,5 +14,12 @@ namespace BilleteraDigital.Modelo
         [Ignore]
         public string montoMoneda => $"{monto:C} {moneda}";
         public int idUsuario { get; set; } // ID del usuario al que pertenece la transacción
+                                           // navegación opcional
+        [Ignore] public Ubicacion? Ubicacion { get; set; }
+        [Ignore]
+        public string UbicacionTexto =>
+    Ubicacion != null
+        ? $"📍 {Ubicacion.Latitud:F4}, {Ubicacion.Longitud:F4}"
+        : ""; // o "Sin ubicación"
     }
 }
